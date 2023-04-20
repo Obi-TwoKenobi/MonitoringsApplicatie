@@ -2,3 +2,6 @@
 .metadata
 .vscode
 bin
+out
+out
+out/*
