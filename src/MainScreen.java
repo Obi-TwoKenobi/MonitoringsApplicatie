@@ -17,6 +17,7 @@ public class MainScreen extends JPanel implements ActionListener {
     private final int screenWidth = tileSize * maxScreenCol; // 768px
     private final int screenHeight = tileSize * maxScreenRow; // 576px
 
+
     public MainScreen (JFrame jFrame){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(new Color(35, 35, 47));

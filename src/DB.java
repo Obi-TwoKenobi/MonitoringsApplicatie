@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DB {
 
@@ -30,4 +28,24 @@ public class DB {
         }
         return null;
     }
+   /* public void components(){
+        try {
+            String queryComponenten = "SELECT * FROM aanbevolen";
+            Statement stm = databaseConnection.createStatement();
+            ResultSet resultSet = stm.executeQuery(queryComponenten);
+            while(resultSet.next()){
+                int aanbevolenid = resultSet.getInt("aanbevolenID");
+                int stockitem = resultSet.getInt("StockItemID");
+                System.out.println(aanbevolenid + " " + stockitem);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }*/
+
+    /*public static void main(String[] args) {
+        DB db = new DB();
+        db.components();
+    }*/
 }
+//component = new Component(resultSet.getInt("beschikbareopslag"), resultSet.getInt("upTime"), resultSet.getInt("processorBelasting"), resultSet.getString("afbeelding"), resultSet.getString("hostnaam"), resultSet.getBoolean("beschikbaarheidsstatus"));

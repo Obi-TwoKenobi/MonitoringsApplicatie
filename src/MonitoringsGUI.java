@@ -1,13 +1,21 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class MonitoringsGUI extends JDialog implements ActionListener {
     private final int screenWidth = 786;
     private final int screenHeight = 576;
     private final int[] NerdyGadgetsDonkerBlauw = {35, 35 ,47};
     private final int[] NerdyGadgetsLichterBlauw = {35, 35 ,80};
+    public static Connection databaseConnection;
+
+    private static final String dbUrl = "jdbc:mariadb://localhost:3306/nerdygadgets";
+    private static final String user = "root";
+    private static final String password = "";
     public MonitoringsGUI(JFrame frame, boolean modal){
         super(frame, modal);
         setTitle("Monitoring");
@@ -34,7 +42,38 @@ public class MonitoringsGUI extends JDialog implements ActionListener {
         setVisible(true);
 
     }
-
+    public void components(){
+        try {
+            String queryComponenten = "SELECT * FROM aanbevolen";
+            Statement stm = databaseConnection.createStatement();
+            ResultSet resultSet = stm.executeQuery(queryComponenten);
+            while(resultSet.next()){
+               int aanbevolenid = resultSet.getInt("aanbevolenID");
+               int stockitem = resultSet.getInt("StockItemID");
+               System.out.println(aanbevolenid + " " + stockitem);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static Connection getConnection(){
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            if(databaseConnection != null){
+                return databaseConnection;
+            }else{
+                databaseConnection = DriverManager.getConnection(dbUrl, user, password);
+                databaseConnection.setAutoCommit(true);
+                return databaseConnection;
+            }
+        }catch(SQLException sqle){
+            sqle.printStackTrace();
+            System.out.println("Error connecting to database");
+        }catch(ClassNotFoundException cnfe){
+            cnfe.printStackTrace();
+        }
+        return null;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
 
