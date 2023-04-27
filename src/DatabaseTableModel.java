@@ -5,6 +5,7 @@ public class DatabaseTableModel extends AbstractTableModel{
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
+    private String[] columnNames = {"Hostnaam", "cpu load", "Totale opslag", "Gebruikte opslag", "vrije opslag", "uptime"};
 
     public DatabaseTableModel() {
         try {
@@ -41,4 +42,9 @@ public class DatabaseTableModel extends AbstractTableModel{
         }
         return null;
     }
+    @Override
+    public String getColumnName(int column) {
+        return columnNames[column];
+    }
+
 }
