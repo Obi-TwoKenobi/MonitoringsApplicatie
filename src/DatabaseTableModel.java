@@ -8,14 +8,15 @@ public class DatabaseTableModel extends AbstractTableModel{
     private String[] columnNames = {"Hostnaam", "cpu load", "Totale opslag", "Gebruikte opslag", "vrije opslag", "uptime"};
 
     public DatabaseTableModel() {
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM componenten");
-        } catch (SQLException e) {
-            e.printStackTrace();
+            try {
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
+                statement = connection.createStatement();
+                resultSet = statement.executeQuery("SELECT * FROM componenten");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-    }
+
     @Override
     public int getRowCount() {
         try {
