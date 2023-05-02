@@ -1,4 +1,7 @@
 import javax.swing.*;
+
+import GUI.infrastructuredesign.InfrastructureDesignGUI;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +32,13 @@ public class MainScreen extends JPanel implements ActionListener {
         monitoring.setBounds(200, 240, size.width, size.height);
         setLayout(null);
         add(monitoring);
+
+        JButton ontwerpButton = new JButton("ontwerp");
+        InfrastructureDesignGUI idg = new InfrastructureDesignGUI(hoofdscherm);
+        ontwerpButton.setBounds(400, 240, size.width, size.height);
+        ontwerpButton.addActionListener((e) -> idg.setVisible(true));
+        add(ontwerpButton);
+
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
     }
