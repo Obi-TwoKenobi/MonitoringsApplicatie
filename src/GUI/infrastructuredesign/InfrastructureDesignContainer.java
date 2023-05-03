@@ -1,15 +1,22 @@
 package GUI.infrastructuredesign;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+
+import controllers.InfrastructureDesignController;
+import data.FirewallComponent;
+import data.InfrastructureDesignComponent;
+import data.WebserverComponenet;
 
 public class InfrastructureDesignContainer extends JPanel{
 
@@ -21,8 +28,12 @@ public class InfrastructureDesignContainer extends JPanel{
     JPanel webserverLayer;
     JPanel databaseLayer;
 
-    public InfrastructureDesignContainer(){
+    private InfrastructureDesignController controller;
+
+    public InfrastructureDesignContainer(InfrastructureDesignController controller){
         super();
+        this.controller = controller;
+
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         this.firewallLayerLabel = new JLabel("Firewall");
@@ -61,19 +72,54 @@ public class InfrastructureDesignContainer extends JPanel{
         this.add(databaseLayerLabel);
         this.add(this.databaseLayer);
 
+        updateView();
+    }
 
-        this.firewallLayer.add(new DesignComponent("Pfsense", 97, 2000));
+    public void updateView(){
+        this.firewallLayer.removeAll();
+        this.databaseLayer.removeAll();
+        this.webserverLayer.removeAll();
+        
+        for(InfrastructureDesignComponent comp : this.controller.getCurrentlyActiveDesign().getFirewallLayer().getInfrastructureComponents()){
+            DesignComponent dc = new DesignComponent(comp);
+            this.firewallLayer.add(dc);
+            dc.addActionListener((e) ->  {
+                this.controller.removeComponentFromLayer(comp);
+                this.repaint();
+            });
+        }
 
-        //TODO aanvullen met InfrastructureDesign
-        for(int i = 0; i < 2; i++){
-            JButton server1 = new JButton();
-            this.webserverLayer.add(new DesignComponent("HALW9001", 99, 4000));
+        for(InfrastructureDesignComponent comp : this.controller.getCurrentlyActiveDesign().getWebserverLayer().getInfrastructureComponents()){
+            DesignComponent dc = new DesignComponent(comp);
+            this.webserverLayer.add(dc);
+            dc.addActionListener((e) ->  {
+                this.controller.removeComponentFromLayer(comp);
+                this.repaint();
+            });
         }
         
-        for(int i = 0; i < 2; i++){
-            JButton databaseserver = new JButton("Database " + (i + 1) + " \n Beschikbaarheid: 99,998% \n Prijs: €4,000");
-            this.databaseLayer.add(new DesignComponent("HALW9001", 97, 2500));
+        for(InfrastructureDesignComponent comp : this.controller.getCurrentlyActiveDesign().getDatabaseLayer().getInfrastructureComponents()){
+            DesignComponent dc = new DesignComponent(comp);
+            this.databaseLayer.add(dc);
+            dc.addActionListener((e) ->  {
+                this.controller.removeComponentFromLayer(comp);
+                this.repaint();
+            });
         }
+
         
+
+        this.revalidate();
+    }
+
+    public JPanel getFirewallLayer(){
+        return this.firewallLayer;
+    }
+
+    public JPanel getWebserverLayer(){
+        return this.webserverLayer;
+    }
+    public JPanel getDatabaseLayer(){
+        return this.databaseLayer;
     }
 }

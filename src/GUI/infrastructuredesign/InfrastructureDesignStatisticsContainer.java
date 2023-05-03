@@ -8,8 +8,13 @@ import java.awt.FlowLayout;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import controllers.InfrastructureDesignController;
 
 public class InfrastructureDesignStatisticsContainer extends JPanel{
 
@@ -19,17 +24,27 @@ public class InfrastructureDesignStatisticsContainer extends JPanel{
     private JButton saveButton;
     private JButton cancelButton;
 
+    private InfrastructureDesignController controller;
 
+    private JDialog parent;
 
-    public InfrastructureDesignStatisticsContainer(){
+    public InfrastructureDesignStatisticsContainer(JDialog parent, InfrastructureDesignController controller){
         super();
-        setPreferredSize(new Dimension(this.getWidth(), 30));
+        this.controller = controller;
+        this.parent = parent;
+        this.setPreferredSize(new Dimension(this.getWidth(), 30));
 
-        this.availabilityPercentageLabel = new JLabel("Beschikbaarheid ontwerp: 97%");
-        this.totalDesignCostLabel = new JLabel("Prijs ontwerp: € 60.000");
+        this.availabilityPercentageLabel = new JLabel("Beschikbaarheid ontwerp: " + this.controller.getCurrentlyActiveDesign().calculateAvailabilityPercentage() * 100);
+        this.totalDesignCostLabel = new JLabel("Prijs ontwerp: € " + this.controller.getCurrentlyActiveDesign().calculateTotalPrice());
 
         this.saveButton = new JButton("Opslaan");
         this.cancelButton = new JButton("Cancel");
+        this.cancelButton.addActionListener((e) -> {
+            int selectedOption = JOptionPane.showConfirmDialog(this, "Weet u zeker dat u het ontwerp wilt afsluiten?");
+            if(selectedOption == JOptionPane.YES_OPTION){
+                this.parent.setVisible(false);
+            }
+        });
 
         
 
@@ -42,5 +57,10 @@ public class InfrastructureDesignStatisticsContainer extends JPanel{
         this.add(saveButton);
         this.add(Box.createRigidArea(new Dimension(5, this.getHeight())));
         this.add(cancelButton);
+    }
+
+    public void updateView(){
+        this.availabilityPercentageLabel.setText("Beschikbaarheid ontwerp: " + this.controller.getCurrentlyActiveDesign().calculateAvailabilityPercentage() * 100);
+        this.totalDesignCostLabel.setText("Prijs ontwerp: € " + this.controller.getCurrentlyActiveDesign().calculateTotalPrice());
     }
 }
