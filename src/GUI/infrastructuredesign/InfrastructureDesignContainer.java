@@ -24,9 +24,9 @@ public class InfrastructureDesignContainer extends JPanel{
     private JLabel webserverLayerLabel;
     private JLabel databaseLayerLabel;
 
-    JPanel firewallLayer;
-    JPanel webserverLayer;
-    JPanel databaseLayer;
+    private JPanel firewallLayer;
+    private JPanel webserverLayer;
+    private JPanel databaseLayer;
 
     private InfrastructureDesignController controller;
 
