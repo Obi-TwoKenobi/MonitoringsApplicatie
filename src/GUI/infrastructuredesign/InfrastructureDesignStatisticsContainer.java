@@ -34,7 +34,7 @@ public class InfrastructureDesignStatisticsContainer extends JPanel{
         this.parent = parent;
         this.setPreferredSize(new Dimension(this.getWidth(), 30));
 
-        this.availabilityPercentageLabel = new JLabel("Beschikbaarheid ontwerp: " + this.controller.getCurrentlyActiveDesign().calculateAvailabilityPercentage() * 100);
+        this.availabilityPercentageLabel = new JLabel("Beschikbaarheid ontwerp: " + this.controller.getCurrentlyActiveDesign().calculateAvailabilityPercentage() * 100 + "%");
         this.totalDesignCostLabel = new JLabel("Prijs ontwerp: € " + this.controller.getCurrentlyActiveDesign().calculateTotalPrice());
 
         this.saveButton = new JButton("Opslaan");
@@ -60,7 +60,7 @@ public class InfrastructureDesignStatisticsContainer extends JPanel{
     }
 
     public void updateView(){
-        this.availabilityPercentageLabel.setText("Beschikbaarheid ontwerp: " + this.controller.getCurrentlyActiveDesign().calculateAvailabilityPercentage() * 100);
+        this.availabilityPercentageLabel.setText("Beschikbaarheid ontwerp: " + this.controller.getCurrentlyActiveDesign().calculateAvailabilityPercentage() * 100 + "%");
         this.totalDesignCostLabel.setText("Prijs ontwerp: € " + this.controller.getCurrentlyActiveDesign().calculateTotalPrice());
     }
 }

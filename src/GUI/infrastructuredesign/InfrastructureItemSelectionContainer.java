@@ -17,7 +17,7 @@ import data.FirewallComponent;
 import data.InfrastructureDesignComponent;
 import data.WebserverComponenet;
 
-public class InfrastructureItemSelectionContainer extends JPanel implements ActionListener{
+public class InfrastructureItemSelectionContainer extends JPanel{
     
     private ArrayList<InfrastructureDesignComponent> COMPONENET_SELECTION;
     private InfrastructureDesignController controller;
@@ -31,7 +31,7 @@ public class InfrastructureItemSelectionContainer extends JPanel implements Acti
             new WebserverComponenet("HAL9002W", 0.90, 3200),
             new WebserverComponenet("HAL9003W", 0.95, 5100),
             new DatabaseserverComponent("HAL9001DB", 0.90, 5100),
-            new DatabaseserverComponent("HAL9002DB", 0.90, 7700),
+            new DatabaseserverComponent("HAL9002DB", 0.95, 7700),
             new DatabaseserverComponent("HAL9003DB", 0.98, 12200)
         ));
         setPreferredSize(new Dimension(150, this.getHeight()));

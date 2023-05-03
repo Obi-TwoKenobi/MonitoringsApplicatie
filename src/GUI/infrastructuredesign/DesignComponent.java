@@ -30,6 +30,6 @@ public class DesignComponent extends JButton{
         this.setOpaque(false);
         this.setFont(new Font("arial", Font.BOLD, 10));
         // this.setContentAreaFilled(false);
-        this.setText("<html>" + this.name + " <br> Beschikbaarheid:" + this.availabilityPercentage +  " <br>  Prijs:" + this.pricePerYear + "</html>");
+        this.setText("<html>" + this.name + " <br> Beschikbaarheid:" + (this.availabilityPercentage * 100) +  "% <br>  Prijs: €" + this.pricePerYear + "</html>");
     }
 }
