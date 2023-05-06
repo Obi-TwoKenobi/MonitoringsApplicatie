@@ -1,22 +1,14 @@
 package GUI.infrastructuredesign;
 
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
 
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 
 import controllers.InfrastructureDesignController;
-import data.FirewallComponent;
 import data.InfrastructureDesignComponent;
-import data.WebserverComponenet;
 
 public class InfrastructureDesignContainer extends JPanel{
 
@@ -27,6 +19,9 @@ public class InfrastructureDesignContainer extends JPanel{
     private JPanel firewallLayer;
     private JPanel webserverLayer;
     private JPanel databaseLayer;
+
+    private final int LAYER_WDITH = 1280;
+    private final int LAYER_HEIGHT = 140;
 
     private InfrastructureDesignController controller;
 
@@ -46,30 +41,30 @@ public class InfrastructureDesignContainer extends JPanel{
         this.databaseLayerLabel.setAlignmentX(LEFT_ALIGNMENT);
 
         this.firewallLayer = new JPanel();
-        this.firewallLayer.setPreferredSize(new Dimension(1280, 140));
+        this.firewallLayer.setPreferredSize(new Dimension(LAYER_WDITH, LAYER_HEIGHT));
         this.firewallLayer.setLayout(new BoxLayout(firewallLayer, BoxLayout.LINE_AXIS));
         this.firewallLayer.setAlignmentX(LEFT_ALIGNMENT);
-        this.firewallLayer.setBackground(Color.RED);
+        // this.firewallLayer.setBackground(Color.RED);
 
 
         this.webserverLayer = new JPanel();
-        this.webserverLayer.setPreferredSize(new Dimension(1280, 140));
+        this.webserverLayer.setPreferredSize(new Dimension(LAYER_WDITH, LAYER_HEIGHT));
         this.webserverLayer.setLayout(new BoxLayout(webserverLayer, BoxLayout.LINE_AXIS));
         this.webserverLayer.setAlignmentX(LEFT_ALIGNMENT);
-        this.webserverLayer.setBackground(Color.GREEN);
+        // this.webserverLayer.setBackground(Color.GREEN);
 
         this.databaseLayer = new JPanel();
-        this.databaseLayer.setPreferredSize(new Dimension(1280, 140));
+        this.databaseLayer.setPreferredSize(new Dimension(LAYER_WDITH, LAYER_HEIGHT));
         this.databaseLayer.setLayout(new BoxLayout(databaseLayer, BoxLayout.LINE_AXIS));
         this.databaseLayer.setAlignmentX(LEFT_ALIGNMENT);
-        this.databaseLayer.setBackground(Color.BLUE);
+        // this.databaseLayer.setBackground(Color.BLUE);
 
 
         this.add(this.firewallLayerLabel);
-        this.add(firewallLayer);
-        this.add(webserverLayerLabel);
+        this.add(this.firewallLayer);
+        this.add(this.webserverLayerLabel);
         this.add(this.webserverLayer);
-        this.add(databaseLayerLabel);
+        this.add(this.databaseLayerLabel);
         this.add(this.databaseLayer);
 
         updateView();
@@ -106,8 +101,6 @@ public class InfrastructureDesignContainer extends JPanel{
                 this.repaint();
             });
         }
-
-        
 
         this.revalidate();
     }

@@ -1,15 +1,10 @@
 package GUI.infrastructuredesign;
-
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,11 +23,13 @@ public class InfrastructureDesignStatisticsContainer extends JPanel{
 
     private JDialog parent;
 
+    private final int GUI_HEIGHT = 30;
+
     public InfrastructureDesignStatisticsContainer(JDialog parent, InfrastructureDesignController controller){
         super();
         this.controller = controller;
         this.parent = parent;
-        this.setPreferredSize(new Dimension(this.getWidth(), 30));
+        this.setPreferredSize(new Dimension(this.getWidth(), GUI_HEIGHT));
 
         this.availabilityPercentageLabel = new JLabel("Beschikbaarheid ontwerp: " + this.controller.getCurrentlyActiveDesign().calculateAvailabilityPercentage() * 100 + "%");
         this.totalDesignCostLabel = new JLabel("Prijs ontwerp: € " + this.controller.getCurrentlyActiveDesign().calculateTotalPrice());

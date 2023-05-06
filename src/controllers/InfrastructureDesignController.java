@@ -65,7 +65,6 @@ public class InfrastructureDesignController {
         this.infrastructureDesignGUI.getDesignContainer().updateView();
         this.infrastructureDesignGUI.getStatisticsContainer().updateView();
 
-        System.out.println(this.getCurrentlyActiveDesign().getFirewallLayer().getInfrastructureComponents());
         return true;
     }
 
