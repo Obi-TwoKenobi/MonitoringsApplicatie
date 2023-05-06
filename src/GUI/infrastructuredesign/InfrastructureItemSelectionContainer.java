@@ -1,7 +1,9 @@
 package GUI.infrastructuredesign;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.Arrays;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 
 import controllers.InfrastructureDesignController;
 import data.ComponentLayer;
@@ -34,7 +37,7 @@ public class InfrastructureItemSelectionContainer extends JPanel{
             new DatabaseserverComponent("HAL9002DB", 0.95, 7700),
             new DatabaseserverComponent("HAL9003DB", 0.98, 12200)
         ));
-        setPreferredSize(new Dimension(150, this.getHeight()));
+        setPreferredSize(new Dimension(150, (150 * 10)));
         this.setBackground(new Color(0xeeeeee));
 
         for(InfrastructureDesignComponent comp : this.COMPONENET_SELECTION){
@@ -42,7 +45,6 @@ public class InfrastructureItemSelectionContainer extends JPanel{
             this.add(idc);
             idc.addActionListener((e) -> {
                 this.controller.addComponentToLayer(comp);
-                System.out.println(comp);   
             });
         }
     }

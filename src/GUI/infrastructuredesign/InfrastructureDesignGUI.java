@@ -1,11 +1,13 @@
 package GUI.infrastructuredesign;
 import java.awt.BorderLayout;
+import java.awt.ScrollPane;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
 
 import controllers.InfrastructureDesignController;
 
@@ -13,6 +15,8 @@ public class InfrastructureDesignGUI extends JDialog {
 
     private final int GUI_WIDTH = 1280;
     private final int GUI_HEIGHT = 720;
+
+    private final int SCROLL_SPEED = 16;
 
     private JMenuBar topMenubar;
     private JMenu fileMenu;
@@ -41,6 +45,9 @@ public class InfrastructureDesignGUI extends JDialog {
         this.fileMenuCloseDesignItem = new JMenuItem("Sluiten");
 
         this.itemSelectionContainer = new InfrastructureItemSelectionContainer(this.controller);
+        JScrollPane itemSelectionPaneScrollable = new JScrollPane(itemSelectionContainer);
+        itemSelectionPaneScrollable.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        itemSelectionPaneScrollable.getVerticalScrollBar().setUnitIncrement(SCROLL_SPEED);
         this.designContainer = new InfrastructureDesignContainer(this.controller);
         this.designStatisticsContainer = new InfrastructureDesignStatisticsContainer(this, this.controller);
 
@@ -59,7 +66,7 @@ public class InfrastructureDesignGUI extends JDialog {
         this.setLayout(new BorderLayout());
         this.setTitle("Infrastructure monitoring - ontwerp - mijnontwerp.ngio");
 
-        this.add(itemSelectionContainer, BorderLayout.WEST);
+        this.add(itemSelectionPaneScrollable, BorderLayout.WEST);
         this.add(designContainer, BorderLayout.CENTER);
         this.add(designStatisticsContainer, BorderLayout.SOUTH);
     }
