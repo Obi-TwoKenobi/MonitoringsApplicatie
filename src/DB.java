@@ -1,6 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DB {
 
@@ -29,5 +27,19 @@ public class DB {
             cnfe.printStackTrace();
         }
         return null;
+    }
+    public void components(){
+        try {
+            String queryComponenten = "SELECT * FROM componenten";
+            Connection connection = DB.getConnection();
+            Statement stm = connection.createStatement();
+            ResultSet resultSet = stm.executeQuery(queryComponenten);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void main(String[] args) {
+        DB db = new DB();
+        db.components();
     }
 }
