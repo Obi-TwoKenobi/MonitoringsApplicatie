@@ -10,6 +10,10 @@ public class MainScreen extends JPanel implements ActionListener {
     //buttons
     private JButton monitoring;
     private JFrame hoofdscherm;
+    private InfrastructureDesignGUI infrastructureDesignGUI;
+
+    //buttons
+    private JButton ontwerpButton;
     //Screen settings
     private final int originalTileSize = 16; // 16x16 tile
     private final int scale = 3;
@@ -34,10 +38,10 @@ public class MainScreen extends JPanel implements ActionListener {
         setLayout(null);
         add(monitoring);
 
-        JButton ontwerpButton = new JButton("ontwerp");
-        InfrastructureDesignGUI idg = new InfrastructureDesignGUI(hoofdscherm);
+        this.ontwerpButton = new JButton("Ontwerpen");
+        infrastructureDesignGUI = new InfrastructureDesignGUI(hoofdscherm);
         ontwerpButton.setBounds(400, 240, size.width, size.height);
-        ontwerpButton.addActionListener((e) -> idg.setVisible(true));
+        ontwerpButton.addActionListener(this);
         add(ontwerpButton);
 
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -48,6 +52,8 @@ public class MainScreen extends JPanel implements ActionListener {
         if (e.getSource().equals(monitoring)){
             hoofdscherm.setVisible(false);
             MonitoringsGUI monitoringsGUI = new MonitoringsGUI();
+        }else if(e.getSource().equals(ontwerpButton)){
+            this.infrastructureDesignGUI.setVisible(true);
         }
     }
 }
