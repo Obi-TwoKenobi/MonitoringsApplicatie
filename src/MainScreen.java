@@ -47,7 +47,7 @@ public class MainScreen extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(monitoring)){
             hoofdscherm.setVisible(false);
-            DatabaseTableGUI databaseTableGUI = new DatabaseTableGUI();
+            MonitoringsGUI monitoringsGUI = new MonitoringsGUI();
         }
     }
 }
