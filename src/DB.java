@@ -34,21 +34,10 @@ public class DB {
             Connection connection = DB.getConnection();
             Statement stm = connection.createStatement();
             ResultSet resultSet = stm.executeQuery(queryComponenten);
-            /*while(resultSet.next()){
-                //int aanbevolenid = resultSet.getInt("aanbevolenID");
-                //int stockitem = resultSet.getInt("StockItemID");
-                String hostnaam = resultSet.getString("hostnaam");
-                //System.out.println(aanbevolenid + " " + stockitem);
-                System.out.println(hostnaam + " gelukt");
-            }*/
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    public void componentsTable(){
-
-    }
-
     public static void main(String[] args) {
         DB db = new DB();
         db.components();

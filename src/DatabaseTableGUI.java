@@ -25,11 +25,7 @@ public class DatabaseTableGUI extends JFrame {
             table = new JTable(model);
             JScrollPane scrollPane = new JScrollPane(table);
             panel.add(scrollPane);
-        /*System.out.println("oke");
-            timer = new Timer(1000, e -> {
-                this.validate();
-            });
-            timer.start();*/
+
             setVisible(true);
         }
 }
