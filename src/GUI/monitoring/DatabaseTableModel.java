@@ -1,3 +1,5 @@
+package GUI.monitoring;
+
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.*;
@@ -30,7 +32,7 @@ public class DatabaseTableModel extends AbstractTableModel{
 
     @Override
     public int getColumnCount() {
-        return 6; // assuming 3 columns in the table
+        return 6;
     }
 
     @Override

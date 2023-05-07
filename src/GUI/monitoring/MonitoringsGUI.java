@@ -1,7 +1,9 @@
-import java.awt.*;
-import java.sql.*;
+package GUI.monitoring;
+
+import GUI.monitoring.DatabaseTableModel;
+
 import javax.swing.*;
-import javax.swing.table.*;
+
 public class MonitoringsGUI extends JFrame {
     private JTable table;
     private DatabaseTableModel model;

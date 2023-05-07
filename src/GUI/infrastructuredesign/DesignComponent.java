@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import data.DatabaseserverComponent;
 import data.FirewallComponent;
 import data.InfrastructureDesignComponent;
-import data.WebserverComponenet;
+import data.WebserverComponent;
 
 public class DesignComponent extends JButton{
     private ImageIcon icon;
@@ -57,7 +57,7 @@ public class DesignComponent extends JButton{
     private ImageIcon getComponentImage(InfrastructureDesignComponent component){
         String filePath = "";
         if(component instanceof FirewallComponent) filePath = "src/resources/images/firewall.png";
-        if(component instanceof WebserverComponenet) filePath = "src/resources/images/webserver.png";
+        if(component instanceof WebserverComponent) filePath = "src/resources/images/webserver.png";
         if(component instanceof DatabaseserverComponent) filePath = "src/resources/images/database.png";
 
         try{

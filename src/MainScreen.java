@@ -1,6 +1,7 @@
 import javax.swing.*;
 
 import GUI.infrastructuredesign.InfrastructureDesignGUI;
+import GUI.monitoring.MonitoringsGUI;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

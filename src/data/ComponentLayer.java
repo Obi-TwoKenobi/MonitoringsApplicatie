@@ -19,7 +19,6 @@ public abstract class ComponentLayer<T extends InfrastructureDesignComponent> {
 			return layerPercentage;
 		}
     }
-
     public ArrayList<T> getInfrastructureComponents(){
         return this.infrastructureComponenetsList;
     }
