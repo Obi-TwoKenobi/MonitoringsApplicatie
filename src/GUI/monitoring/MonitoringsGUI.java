@@ -1,8 +1,10 @@
 package GUI.monitoring;
 
-import GUI.monitoring.DatabaseTableModel;
-
 import javax.swing.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MonitoringsGUI extends JFrame {
     private JTable table;
@@ -22,8 +24,16 @@ public class MonitoringsGUI extends JFrame {
         JPanel panel = new JPanel();
         getContentPane().add(panel);
 
+        Connection connection = null;
+        Statement statement = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        model = new DatabaseTableModel();
+        model = new DatabaseTableModel(connection, statement);
         table = new JTable(model);
         JScrollPane scrollPane = new JScrollPane(table);
         panel.add(scrollPane);
