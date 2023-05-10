@@ -11,6 +11,9 @@ public class InfrastructureDesignComponent {
         this.pricePerYear = pricePerYear;
     }
 
+    public InfrastructureDesignComponent() {
+    }
+
     public String getName(){
         return this.name;
     }

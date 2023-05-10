@@ -1,6 +1,12 @@
 package GUI.infrastructuredesign;
 import java.awt.BorderLayout;
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -11,7 +17,7 @@ import javax.swing.JScrollPane;
 
 import controllers.InfrastructureDesignController;
 
-public class InfrastructureDesignGUI extends JDialog {
+public class InfrastructureDesignGUI extends JDialog implements ActionListener {
 
     private final int GUI_WIDTH = 1280;
     private final int GUI_HEIGHT = 720;
@@ -33,7 +39,7 @@ public class InfrastructureDesignGUI extends JDialog {
     private InfrastructureDesignController controller;
 
 
-    public InfrastructureDesignGUI(JFrame parent){
+    public InfrastructureDesignGUI(JFrame parent) {
         super(parent, true);
         this.controller = new InfrastructureDesignController(this);
 
@@ -41,7 +47,9 @@ public class InfrastructureDesignGUI extends JDialog {
         this.generateOptimalDesignMenu = new JMenu("ontwerp genereren");
 
         this.fileMenuOpenDesignItem = new JMenuItem("Bestand openen");
+        fileMenuOpenDesignItem.addActionListener(this);
         this.fileMenuSaveDesignItem = new JMenuItem("bestand opslaan");
+        fileMenuSaveDesignItem.addActionListener(this);
         this.fileMenuCloseDesignItem = new JMenuItem("Sluiten");
 
         this.itemSelectionContainer = new InfrastructureItemSelectionContainer(this.controller);
@@ -72,11 +80,33 @@ public class InfrastructureDesignGUI extends JDialog {
     }
 
 
-    public InfrastructureDesignContainer getDesignContainer(){
+    public InfrastructureDesignContainer getDesignContainer() {
         return this.designContainer;
     }
-    
-    public InfrastructureDesignStatisticsContainer getStatisticsContainer(){
+
+    public InfrastructureDesignStatisticsContainer getStatisticsContainer() {
         return this.designStatisticsContainer;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(fileMenuSaveDesignItem)) {
+            /*FileChooser fileChooser = new FileChooser();*/
+            try {
+                controller.saveInfrastructureDesign("test.txt");
+            } catch (FileNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        if (e.getSource().equals(fileMenuOpenDesignItem)){
+            try {
+                controller.loadInfrastructureDesign("test");
+                System.out.println("lukt");
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
     }
 }

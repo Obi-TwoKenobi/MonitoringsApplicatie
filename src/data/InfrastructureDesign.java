@@ -1,6 +1,8 @@
 package data;
 
-public class InfrastructureDesign {
+import java.io.Serializable;
+
+public class InfrastructureDesign implements Serializable {
     private FirewallLayer firewallLayer;
     private WebserverLayer webserverLayer;
     private DatabaseLayer databaseLayer;
