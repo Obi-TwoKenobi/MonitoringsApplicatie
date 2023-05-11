@@ -1,6 +1,9 @@
 package data;
 
-public class InfrastructureDesignComponent {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class InfrastructureDesignComponent implements Serializable {
     private String name;
     private double availabilityPercentage;
     private double pricePerYear;

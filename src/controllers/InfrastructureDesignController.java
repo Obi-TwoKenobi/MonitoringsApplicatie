@@ -38,6 +38,7 @@ public class InfrastructureDesignController {
             out.close();
             fileOut.close();
             System.out.println("object info opgeslagen");
+            System.out.println(this.currentlyActiveDesign);
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {

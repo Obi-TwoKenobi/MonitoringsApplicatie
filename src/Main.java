@@ -14,6 +14,5 @@ public class Main {
 
         mainScreenFrame.setLocationRelativeTo(null);
         mainScreenFrame.setVisible(true);
-
     }
 }
