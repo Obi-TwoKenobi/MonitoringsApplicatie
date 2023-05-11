@@ -18,30 +18,9 @@ public class Main {
         mainScreenFrame.setResizable(false);
         mainScreenFrame.setTitle("Hoofdscherm");
 
-        //try {
-          //  Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
-            //Statement statement = connection.createStatement();
-
-            //DatabaseTableModel tableModel = new DatabaseTableModel(connection, statement);
-
         MainScreen mainScreen = new MainScreen(mainScreenFrame);
         mainScreenFrame.add(mainScreen);
         mainScreenFrame.pack();
-
-            try {
-                Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
-                Statement statement = connection.createStatement();
-
-                DatabaseTableModel tableModel = new DatabaseTableModel(connection, statement);
-
-
-                ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-            int refreshInterval = 3;
-            executor.scheduleAtFixedRate(new DataRefreshTask(statement, tableModel), 0, refreshInterval, TimeUnit.SECONDS);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
 
         mainScreenFrame.setLocationRelativeTo(null);
         mainScreenFrame.setVisible(true);

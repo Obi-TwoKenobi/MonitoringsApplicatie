@@ -1,6 +1,9 @@
 package GUI.monitoring;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -24,20 +27,21 @@ public class MonitoringsGUI extends JFrame {
         JPanel panel = new JPanel();
         getContentPane().add(panel);
 
-        Connection connection = null;
-        Statement statement = null;
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
-            statement = connection.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        model = new DatabaseTableModel(connection, statement);
+        model = new DatabaseTableModel();
         table = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(table);
-        panel.add(scrollPane);
+        add(new JScrollPane(table), BorderLayout.CENTER);
 
+        // create a timer to refresh the data every 3 seconds
+        timer = new Timer(3000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // update the table data
+                model.DatabaseTableModel();
+            }
+        });
+        timer.start();
+
+        pack();
         setVisible(true);
     }
 }
