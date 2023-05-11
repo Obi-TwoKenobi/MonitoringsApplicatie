@@ -22,7 +22,15 @@ public abstract class ComponentLayer<T extends InfrastructureDesignComponent> im
 			return layerPercentage;
 		}
     }
-    public ArrayList<T> getInfrastructureComponents(){
+
+	@Override
+	public String toString() {
+		return "ComponentLayer{" +
+				"infrastructureComponenetsList=" + infrastructureComponenetsList +
+				'}';
+	}
+
+	public ArrayList<T> getInfrastructureComponents(){
         return this.infrastructureComponenetsList;
     }
 }

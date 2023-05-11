@@ -43,4 +43,13 @@ public class InfrastructureDesign implements Serializable {
     public DatabaseLayer getDatabaseLayer(){
         return this.databaseLayer;
     }
+
+    @Override
+    public String toString() {
+        return "InfrastructureDesign{" +
+                "firewallLayer=" + firewallLayer +
+                ", webserverLayer=" + webserverLayer +
+                ", databaseLayer=" + databaseLayer +
+                '}';
+    }
 }

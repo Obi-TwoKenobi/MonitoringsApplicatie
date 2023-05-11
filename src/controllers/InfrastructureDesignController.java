@@ -53,6 +53,7 @@ public class InfrastructureDesignController {
         in.close();
         fileIn.close();
         System.out.println("openen werkt");
+        System.out.println(this.currentlyActiveDesign);
         this.infrastructureDesignGUI.getDesignContainer().updateView();
         this.infrastructureDesignGUI.getStatisticsContainer().updateView();
         this.infrastructureDesignGUI.revalidate();

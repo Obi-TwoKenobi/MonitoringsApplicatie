@@ -35,13 +35,14 @@ public class FileOpslaan extends JFrame implements ActionListener {
             System.out.println("knop werkt");
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setCurrentDirectory(new File(".")); //sets current directory
-            int response = fileChooser.showSaveDialog(null); //select file to open
+            int response = fileChooser.showSaveDialog(GUI); //select file to open
             //int response = fileChooser.showSaveDialog(null); //select file to save
 
             if(response == JFileChooser.APPROVE_OPTION) {
-                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                String file = fileChooser.getSelectedFile().getAbsolutePath();
                 try {
-                    controller.saveInfrastructureDesign(String.valueOf(file));
+                    controller.saveInfrastructureDesign(file);
+                    System.out.println(this.controller.getCurrentlyActiveDesign());
                 } catch (FileNotFoundException ex) {
                     throw new RuntimeException(ex);
                 }

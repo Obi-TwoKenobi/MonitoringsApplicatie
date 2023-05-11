@@ -37,4 +37,13 @@ public class InfrastructureDesignComponent {
     public void setPriceperYear(double pricePerYear){
         this.pricePerYear = pricePerYear;
     }
+
+    @Override
+    public String toString() {
+        return "InfrastructureDesignComponent{" +
+                "name='" + name + '\'' +
+                ", availabilityPercentage=" + availabilityPercentage +
+                ", pricePerYear=" + pricePerYear +
+                '}';
+    }
 }

@@ -39,9 +39,10 @@ public class FileOpenen extends JFrame implements ActionListener {
             //int response = fileChooser.showSaveDialog(null); //select file to save
 
             if(response == JFileChooser.APPROVE_OPTION) {
-                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                //File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                String file = fileChooser.getSelectedFile().getAbsolutePath();
                 try {
-                    controller.loadInfrastructureDesign(String.valueOf(file));
+                    controller.loadInfrastructureDesign(file);
                 } catch (FileNotFoundException ex) {
                     throw new RuntimeException(ex);
                 } catch (IOException ex) {
