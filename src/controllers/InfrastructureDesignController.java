@@ -32,7 +32,7 @@ public class InfrastructureDesignController {
 
     public void saveInfrastructureDesign(String filePath) throws FileNotFoundException {
         try {
-            FileOutputStream fileOut = new FileOutputStream("UserInfo.ser");
+            FileOutputStream fileOut = new FileOutputStream(filePath);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this.currentlyActiveDesign);
             out.close();
@@ -47,12 +47,12 @@ public class InfrastructureDesignController {
     }
     
     public void loadInfrastructureDesign(String filePath) throws IOException, ClassNotFoundException {
-        FileInputStream fileIn = new FileInputStream("C:\\Users\\gwijn\\OneDrive\\Documenten\\GitHub\\MonitoringsApplicatie\\UserInfo.ser");
+        FileInputStream fileIn = new FileInputStream(filePath);
         ObjectInputStream in = new ObjectInputStream(fileIn);
         this.currentlyActiveDesign = (data.InfrastructureDesign) in.readObject();
         in.close();
         fileIn.close();
-        System.out.println("openene werkt");
+        System.out.println("openen werkt");
         this.infrastructureDesignGUI.getDesignContainer().updateView();
         this.infrastructureDesignGUI.getStatisticsContainer().updateView();
         this.infrastructureDesignGUI.revalidate();

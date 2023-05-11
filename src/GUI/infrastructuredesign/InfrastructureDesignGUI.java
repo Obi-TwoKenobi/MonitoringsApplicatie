@@ -40,7 +40,7 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
 
 
     public InfrastructureDesignGUI(JFrame parent) {
-        super(parent, true);
+        super(parent, false);
         this.controller = new InfrastructureDesignController(this);
 
         this.fileMenu = new JMenu("Bestand");
@@ -92,21 +92,10 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(fileMenuSaveDesignItem)) {
             /*FileChooser fileChooser = new FileChooser();*/
-            try {
-                controller.saveInfrastructureDesign("test.txt");
-            } catch (FileNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            FileOpslaan opslaan = new FileOpslaan(this);
         }
         if (e.getSource().equals(fileMenuOpenDesignItem)){
-            try {
-                controller.loadInfrastructureDesign("test");
-                System.out.println("lukt");
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            } catch (ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
+            FileOpenen openen = new FileOpenen(this);
         }
     }
 }
