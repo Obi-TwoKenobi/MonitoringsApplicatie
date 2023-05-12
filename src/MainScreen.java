@@ -24,7 +24,7 @@ public class MainScreen extends JPanel implements ActionListener {
     private final int IMAGE_width = 250;
     private final int IMAGE_height = 200;
     private InfrastructureDesignGUI infrastructureDesignGUI;
-    private ImageIcon icon0, icon1;
+    private ImageIcon monitoringIcon, ontwerpIcon;
 
     //Screen settings
     private final int originalTileSize = 16; // 16x16 tile
@@ -46,8 +46,8 @@ public class MainScreen extends JPanel implements ActionListener {
         this.monitoringLabel = new JLabel("Monitoring");
         this.ontwerpLabel = new JLabel("Ontwerpen");
 
-        this.icon0 = this.getComponentImage(0);
-        this.icon1 = this.getComponentImage(1);
+        this.monitoringIcon = this.getComponentImage(0);
+        this.ontwerpIcon = this.getComponentImage(1);
 
         add(monitoringLabel);
         add(ontwerpLabel);
@@ -61,14 +61,14 @@ public class MainScreen extends JPanel implements ActionListener {
         ontwerpLabel.setFont(new Font("Arial", Font.PLAIN, 30));
         ontwerpLabel.setForeground(Color.white);
 
-        monitoring = new JButton(icon0);
+        monitoring = new JButton(monitoringIcon);
         monitoring.addActionListener(this);
         Dimension size = monitoring.getPreferredSize();
         monitoring.setBounds(80, 200, size.width, size.height);
         setLayout(null);
         add(monitoring);
 
-        this.ontwerpButton = new JButton(icon1);
+        this.ontwerpButton = new JButton(ontwerpIcon);
         infrastructureDesignGUI = new InfrastructureDesignGUI(hoofdscherm);
         ontwerpButton.setBounds(400, 200, size.width, size.height);
         ontwerpButton.addActionListener(this);
