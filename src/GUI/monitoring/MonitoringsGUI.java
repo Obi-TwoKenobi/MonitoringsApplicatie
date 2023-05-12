@@ -1,8 +1,13 @@
 package GUI.monitoring;
 
-import GUI.monitoring.DatabaseTableModel;
-
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MonitoringsGUI extends JFrame {
     private JTable table;
@@ -22,12 +27,21 @@ public class MonitoringsGUI extends JFrame {
         JPanel panel = new JPanel();
         getContentPane().add(panel);
 
-
         model = new DatabaseTableModel();
         table = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(table);
-        panel.add(scrollPane);
+        add(new JScrollPane(table), BorderLayout.CENTER);
 
+        // create a timer to refresh the data every 3 seconds
+        timer = new Timer(3000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // update the table data
+                model.DatabaseTableModel();
+            }
+        });
+        timer.start();
+
+        pack();
         setVisible(true);
     }
 }
