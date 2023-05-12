@@ -1,6 +1,7 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import GUI.Styling;
 import GUI.infrastructuredesign.InfrastructureDesignGUI;
 import GUI.monitoring.MonitoringsGUI;
 import data.DatabaseserverComponent;
@@ -39,7 +40,7 @@ public class MainScreen extends JPanel implements ActionListener {
 
     public MainScreen (JFrame jFrame){
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(new Color(35, 35, 47));
+        this.setBackground(Styling.COLOR_DARK_BLUE);
         this.setDoubleBuffered(true);
         this.hoofdscherm = jFrame;
 

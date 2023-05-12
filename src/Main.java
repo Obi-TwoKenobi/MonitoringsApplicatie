@@ -1,4 +1,4 @@
-import GUI.monitoring.DataRefreshTask;
+import GUI.monitoring.DatabaseTableModel;
 import GUI.monitoring.DatabaseTableModel;
 
 import javax.swing.*;
