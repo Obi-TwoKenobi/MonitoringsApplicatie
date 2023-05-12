@@ -1,6 +1,8 @@
 package data;
 
-public class InfrastructureDesign {
+import java.io.Serializable;
+
+public class InfrastructureDesign implements Serializable {
     private FirewallLayer firewallLayer;
     private WebserverLayer webserverLayer;
     private DatabaseLayer databaseLayer;
@@ -40,5 +42,14 @@ public class InfrastructureDesign {
     
     public DatabaseLayer getDatabaseLayer(){
         return this.databaseLayer;
+    }
+
+    @Override
+    public String toString() {
+        return "InfrastructureDesign{" +
+                "firewallLayer=" + firewallLayer +
+                ", webserverLayer=" + webserverLayer +
+                ", databaseLayer=" + databaseLayer +
+                '}';
     }
 }

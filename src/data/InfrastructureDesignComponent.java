@@ -1,6 +1,9 @@
 package data;
 
-public class InfrastructureDesignComponent {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class InfrastructureDesignComponent implements Serializable {
     private String name;
     private double availabilityPercentage;
     private double pricePerYear;
@@ -9,6 +12,9 @@ public class InfrastructureDesignComponent {
         this.name = name;
         this.availabilityPercentage = availabilityPercentage;
         this.pricePerYear = pricePerYear;
+    }
+
+    public InfrastructureDesignComponent() {
     }
 
     public String getName(){
@@ -33,5 +39,14 @@ public class InfrastructureDesignComponent {
 
     public void setPriceperYear(double pricePerYear){
         this.pricePerYear = pricePerYear;
+    }
+
+    @Override
+    public String toString() {
+        return "InfrastructureDesignComponent{" +
+                "name='" + name + '\'' +
+                ", availabilityPercentage=" + availabilityPercentage +
+                ", pricePerYear=" + pricePerYear +
+                '}';
     }
 }

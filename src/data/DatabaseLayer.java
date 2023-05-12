@@ -1,3 +1,5 @@
 package data;
 
-public class DatabaseLayer extends ComponentLayer<DatabaseserverComponent>{}
+import java.io.Serializable;
+
+public class DatabaseLayer extends ComponentLayer<DatabaseserverComponent> implements Serializable{}

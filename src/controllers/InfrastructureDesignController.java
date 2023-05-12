@@ -4,6 +4,7 @@ import javax.management.RuntimeErrorException;
 import javax.swing.JComponent;
 
 import GUI.infrastructuredesign.DesignComponent;
+import GUI.infrastructuredesign.InfrastructureDesignContainer;
 import GUI.infrastructuredesign.InfrastructureDesignGUI;
 import data.ComponentLayer;
 import data.DatabaseserverComponent;
@@ -12,9 +13,12 @@ import data.InfrastructureDesign;
 import data.InfrastructureDesignComponent;
 import data.WebserverComponent;
 
+import java.io.*;
+
 public class InfrastructureDesignController {
     private InfrastructureDesignGUI infrastructureDesignGUI;
     private InfrastructureDesign currentlyActiveDesign;
+    private InfrastructureDesignContainer infrastructureDesignContainer;
 
     public InfrastructureDesignController(InfrastructureDesignGUI infrastructureDesignGUI){
         this.infrastructureDesignGUI = infrastructureDesignGUI;
@@ -26,12 +30,34 @@ public class InfrastructureDesignController {
         this.currentlyActiveDesign = currentlyActiveDesign;
     }
 
-    public boolean saveInfrastructureDesign(String filePath) throws Exception{
-        throw new Exception("nog niet geimplementeert");
+    public void saveInfrastructureDesign(String filePath) throws FileNotFoundException {
+        try {
+            FileOutputStream fileOut = new FileOutputStream(filePath);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(this.currentlyActiveDesign);
+            out.close();
+            fileOut.close();
+            System.out.println("object info opgeslagen");
+            System.out.println(this.currentlyActiveDesign);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
     
-    public boolean loadInfrastructureDesign(String filePath) throws Exception{
-        throw new Exception("nog niet geimplementeert");
+    public void loadInfrastructureDesign(String filePath) throws IOException, ClassNotFoundException {
+        FileInputStream fileIn = new FileInputStream(filePath);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        this.currentlyActiveDesign = (data.InfrastructureDesign) in.readObject();
+        in.close();
+        fileIn.close();
+        System.out.println("openen werkt");
+        System.out.println(this.currentlyActiveDesign);
+        this.infrastructureDesignGUI.getDesignContainer().updateView();
+        this.infrastructureDesignGUI.getStatisticsContainer().updateView();
+        this.infrastructureDesignGUI.revalidate();
     }
     
     
@@ -70,5 +96,9 @@ public class InfrastructureDesignController {
 
     public InfrastructureDesign getCurrentlyActiveDesign(){
         return this.currentlyActiveDesign;
+    }
+
+    public void setDesign(){
+        this.currentlyActiveDesign = null;
     }
 }
