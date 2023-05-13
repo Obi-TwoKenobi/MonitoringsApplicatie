@@ -1,4 +1,5 @@
 package GUI.infrastructuredesign;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
@@ -51,6 +52,7 @@ public class DesignComponent extends JButton{
         this.setVerticalTextPosition(SwingConstants.BOTTOM);
         this.setHorizontalTextPosition(SwingConstants.CENTER);
         this.setIcon(this.icon);
+        this.setForeground(Color.WHITE);
         this.setText("<html>" + this.name + " <br> Beschikbaarheid:" + (this.availabilityPercentage * 100) +  "% <br>  Prijs: €" + this.pricePerYear + "</html>");
     }
 

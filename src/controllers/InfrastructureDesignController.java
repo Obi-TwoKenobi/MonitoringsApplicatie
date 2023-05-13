@@ -53,8 +53,6 @@ public class InfrastructureDesignController {
         this.currentlyActiveDesign = (data.InfrastructureDesign) in.readObject();
         in.close();
         fileIn.close();
-        System.out.println("openen werkt");
-        System.out.println(this.currentlyActiveDesign);
         this.infrastructureDesignGUI.getDesignContainer().updateView();
         this.infrastructureDesignGUI.getStatisticsContainer().updateView();
         this.infrastructureDesignGUI.revalidate();
@@ -67,10 +65,13 @@ public class InfrastructureDesignController {
 
     public boolean addComponentToLayer(InfrastructureDesignComponent component){
         if(component instanceof WebserverComponent){
+            if(this.getCurrentlyActiveDesign().getWebserverLayer().getInfrastructureComponents().size() >= this.getCurrentlyActiveDesign().getWebserverLayer().MAX_WEB_SERVERS) return false;
             this.getCurrentlyActiveDesign().getWebserverLayer().getInfrastructureComponents().add((WebserverComponent)component);
         }else if (component instanceof DatabaseserverComponent){
+            if(this.getCurrentlyActiveDesign().getDatabaseLayer().getInfrastructureComponents().size() >= this.getCurrentlyActiveDesign().getDatabaseLayer().MAX_DATABASE_SERVERS) return false;
             this.getCurrentlyActiveDesign().getDatabaseLayer().getInfrastructureComponents().add((DatabaseserverComponent)component);
         }else if(component instanceof FirewallComponent){
+            if(this.getCurrentlyActiveDesign().getFirewallLayer().getInfrastructureComponents().size() >= this.getCurrentlyActiveDesign().getFirewallLayer().MAX_FIREWALLS) return false;
             this.getCurrentlyActiveDesign().getFirewallLayer().getInfrastructureComponents().add((FirewallComponent)component);
             
         }
@@ -94,11 +95,18 @@ public class InfrastructureDesignController {
         return true;
     }
 
+    public void newDesign(){
+        this.setCurrentlyActiveDesign(new InfrastructureDesign());
+        this.infrastructureDesignGUI.getDesignContainer().updateView();
+        this.infrastructureDesignGUI.getStatisticsContainer().updateView();
+        this.infrastructureDesignGUI.revalidate();
+    }
+
     public InfrastructureDesign getCurrentlyActiveDesign(){
         return this.currentlyActiveDesign;
     }
 
-    public void setDesign(){
-        this.currentlyActiveDesign = null;
+    public void setCurrentlyActiveDesign(InfrastructureDesign design){
+        this.currentlyActiveDesign = design;
     }
 }
