@@ -31,7 +31,6 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
     private InfrastructureItemSelectionContainer itemSelectionContainer;
     private InfrastructureDesignContainer designContainer;
     private InfrastructureDesignStatisticsContainer designStatisticsContainer;
-
     private InfrastructureDesignController controller;
 
 
@@ -72,7 +71,6 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
 
         this.topMenubar.add(generateOptimalDesignMenu);
 
-
         this.setJMenuBar(topMenubar);
         this.setSize(GUI_WIDTH, GUI_HEIGHT);
         this.setLocationRelativeTo(null);
@@ -95,7 +93,6 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
         if(e.getSource().equals(fileMenuNewDesignItem)){
             if(this.controller.getCurrentlyActiveDesign() != null){
                 String[] options = {"Ja", "Nee"};
@@ -106,7 +103,6 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
                 }
             }
         }
-
 
         if(e.getSource().equals(fileMenuSaveDesignAsItem)){
             JFileChooser fileChooser = new JFileChooser();
@@ -126,7 +122,6 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
                 }
             }
         }
-
 
         if (e.getSource().equals(fileMenuSaveDesignItem)) {
             if(this.controller.getCurrentlyActiveDesign().getSavedFilePath() != null){

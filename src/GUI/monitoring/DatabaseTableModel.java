@@ -1,12 +1,8 @@
 package GUI.monitoring;
-
 import java.sql.*;
 import javax.swing.table.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class DatabaseTableModel extends AbstractTableModel{
     private Connection connection;
@@ -34,8 +30,6 @@ public class DatabaseTableModel extends AbstractTableModel{
                 }
                 data = rows.toArray(new Object[0][]);
                 fireTableDataChanged();
-
-                System.out.println("databasetablemodel");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -78,9 +72,5 @@ public class DatabaseTableModel extends AbstractTableModel{
     public void setValueAt(Object value, int rowIndex, int columnIndex) {
         data[rowIndex][columnIndex] = value;
         fireTableCellUpdated(rowIndex, columnIndex);
-    }
-
-    public Object[] getRow(int rowIndex) {
-        return data[rowIndex];
     }
 }

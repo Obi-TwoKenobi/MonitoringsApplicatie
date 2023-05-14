@@ -79,7 +79,6 @@ public class InfrastructureDesignStatisticsContainer extends JPanel{
                 }
         });
 
-
         this.cancelButton = new JButton("Cancel");
         this.cancelButton.addActionListener((e) -> {
             String[] options = {"Ja", "Nee"};
@@ -88,8 +87,6 @@ public class InfrastructureDesignStatisticsContainer extends JPanel{
                 this.parent.setVisible(false);
             }
         });
-
-        
 
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.add(Box.createRigidArea(new Dimension(10, this.getHeight())));

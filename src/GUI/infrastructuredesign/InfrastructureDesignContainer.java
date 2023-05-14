@@ -57,7 +57,6 @@ public class InfrastructureDesignContainer extends JPanel{
         this.firewallLayer.setAlignmentX(LEFT_ALIGNMENT);
         this.firewallLayer.setBackground(Styling.COLOR_LIGHT_BLUE);
 
-
         this.webserverLayer = new JPanel();
         this.webserverLayer.setPreferredSize(new Dimension(LAYER_WDITH, LAYER_HEIGHT));
         this.webserverLayer.setLayout(new BoxLayout(webserverLayer, BoxLayout.LINE_AXIS));
@@ -69,7 +68,6 @@ public class InfrastructureDesignContainer extends JPanel{
         this.databaseLayer.setLayout(new BoxLayout(databaseLayer, BoxLayout.LINE_AXIS));
         this.databaseLayer.setAlignmentX(LEFT_ALIGNMENT);
         this.databaseLayer.setBackground(Styling.COLOR_LIGHT_BLUE);
-
 
         this.add(this.firewallLayerLabel);
         this.add(this.firewallLayer);
@@ -119,7 +117,6 @@ public class InfrastructureDesignContainer extends JPanel{
     public JPanel getFirewallLayer(){
         return this.firewallLayer;
     }
-
     public JPanel getWebserverLayer(){
         return this.webserverLayer;
     }

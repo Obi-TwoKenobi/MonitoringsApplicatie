@@ -30,19 +30,16 @@ public class DB {
         }
         return null;
     }
-    public void components(){
+    public ResultSet componentenQuery(){
         try {
             String queryComponenten = "SELECT * FROM componenten";
             Connection connection = DB.getConnection();
             Statement stm = connection.createStatement();
             ResultSet resultSet = stm.executeQuery(queryComponenten);
+            return resultSet;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-    public static void main(String[] args) {
-        DB db = new DB();
-        db.components();
     }
 }
 //component = new Component(resultSet.getInt("beschikbareopslag"), resultSet.getInt("upTime"), resultSet.getInt("processorBelasting"), resultSet.getString("afbeelding"), resultSet.getString("hostnaam"), resultSet.getBoolean("beschikbaarheidsstatus"));

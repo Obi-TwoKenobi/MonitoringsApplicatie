@@ -37,14 +37,9 @@ public class InfrastructureDesignController {
             out.writeObject(this.currentlyActiveDesign);
             out.close();
             fileOut.close();
-            System.out.println("object info opgeslagen");
-            System.out.println(this.currentlyActiveDesign);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
     
     public void loadInfrastructureDesign(String filePath) throws IOException, ClassNotFoundException {

@@ -19,12 +19,13 @@ import javax.swing.ImageIcon;
 
 public class MainScreen extends JPanel implements ActionListener {
     //buttons
-    private JButton monitoring, ontwerpButton;
+    private JButton monitoringButton, ontwerpButton;
     private JFrame hoofdscherm;
     private JLabel monitoringLabel, ontwerpLabel;
     private final int IMAGE_width = 250;
     private final int IMAGE_height = 200;
     private InfrastructureDesignGUI infrastructureDesignGUI;
+    private MonitoringsGUI monitoringsGUI;
     private ImageIcon monitoringIcon, ontwerpIcon;
 
     //Screen settings
@@ -42,6 +43,7 @@ public class MainScreen extends JPanel implements ActionListener {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Styling.COLOR_DARK_BLUE);
         this.setDoubleBuffered(true);
+        this.setLayout(null);
         this.hoofdscherm = jFrame;
 
         this.monitoringLabel = new JLabel("Monitoring");
@@ -62,28 +64,28 @@ public class MainScreen extends JPanel implements ActionListener {
         ontwerpLabel.setFont(new Font("Arial", Font.PLAIN, 30));
         ontwerpLabel.setForeground(Color.white);
 
-        monitoring = new JButton(monitoringIcon);
-        monitoring.addActionListener(this);
-        Dimension size = monitoring.getPreferredSize();
-        monitoring.setBounds(80, 200, size.width, size.height);
-        setLayout(null);
-        add(monitoring);
+        this.monitoringButton = new JButton(monitoringIcon);
+        monitoringsGUI = new MonitoringsGUI(hoofdscherm);
+        monitoringButton.addActionListener(this);
+        Dimension monitoringButtonPreferredSize = monitoringButton.getPreferredSize();
+        monitoringButton.setBounds(80, 200, monitoringButtonPreferredSize.width, monitoringButtonPreferredSize.height);
+        add(monitoringButton);
 
         this.ontwerpButton = new JButton(ontwerpIcon);
         infrastructureDesignGUI = new InfrastructureDesignGUI(hoofdscherm);
-        ontwerpButton.setBounds(400, 200, size.width, size.height);
+        ontwerpButton.setBounds(400, 200, monitoringButtonPreferredSize.width, monitoringButtonPreferredSize.height);
         ontwerpButton.addActionListener(this);
         add(ontwerpButton);
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         ontwerpButton.setBorderPainted(false);
-        monitoring.setBorderPainted(false);
+        monitoringButton.setBorderPainted(false);
 
         ontwerpButton.setFocusPainted(false);
-        monitoring.setFocusPainted(false);
+        monitoringButton.setFocusPainted(false);
 
         ontwerpButton.setOpaque(false);
-        monitoring.setOpaque(false);
+        monitoringButton.setOpaque(false);
     }
     private ImageIcon getComponentImage(int keuze){
         String filePath = "";
@@ -101,9 +103,8 @@ public class MainScreen extends JPanel implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(monitoring)){
-            hoofdscherm.setVisible(false);
-            MonitoringsGUI monitoringsGUI = new MonitoringsGUI();
+        if (e.getSource().equals(monitoringButton)){
+            this.monitoringsGUI.setVisible(true);
         }else if(e.getSource().equals(ontwerpButton)){
             this.infrastructureDesignGUI.setVisible(true);
         }

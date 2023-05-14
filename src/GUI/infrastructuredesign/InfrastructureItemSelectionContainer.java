@@ -22,7 +22,6 @@ public class InfrastructureItemSelectionContainer extends JPanel{
 
     public InfrastructureItemSelectionContainer(InfrastructureDesignController controller){
         super();
-
         this.controller = controller;
         this.COMPONENT_SELECTION = new ArrayList<>(Arrays.asList(
             new FirewallComponent("pfSense", 0.99998, 4000),
