@@ -7,6 +7,8 @@ public class InfrastructureDesign implements Serializable {
     private WebserverLayer webserverLayer;
     private DatabaseLayer databaseLayer;
 
+    private String savedFilePath;
+
 
     public InfrastructureDesign(){
         this.firewallLayer = new FirewallLayer();
@@ -21,6 +23,7 @@ public class InfrastructureDesign implements Serializable {
     }
 
     public double calculateAvailabilityPercentage(){
+        System.out.println(this.webserverLayer.calculateAvailabilityPercentage());
         return this.firewallLayer.calculateAvailabilityPercentage() * this.webserverLayer.calculateAvailabilityPercentage() * this.databaseLayer.calculateAvailabilityPercentage();
     }
     
@@ -42,6 +45,14 @@ public class InfrastructureDesign implements Serializable {
     
     public DatabaseLayer getDatabaseLayer(){
         return this.databaseLayer;
+    }
+
+    public void setSavedFilePath(String savedFilePath) {
+        this.savedFilePath = savedFilePath;
+    }
+
+    public String getSavedFilePath() {
+        return savedFilePath;
     }
 
     @Override

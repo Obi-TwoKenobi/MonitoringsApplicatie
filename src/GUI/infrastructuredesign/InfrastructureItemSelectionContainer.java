@@ -2,11 +2,13 @@ package GUI.infrastructuredesign;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JPanel;
 
+import GUI.Styling;
 import controllers.InfrastructureDesignController;
 import data.DatabaseserverComponent;
 import data.FirewallComponent;
@@ -20,6 +22,7 @@ public class InfrastructureItemSelectionContainer extends JPanel{
 
     public InfrastructureItemSelectionContainer(InfrastructureDesignController controller){
         super();
+
         this.controller = controller;
         this.COMPONENT_SELECTION = new ArrayList<>(Arrays.asList(
             new FirewallComponent("pfSense", 0.99998, 4000),

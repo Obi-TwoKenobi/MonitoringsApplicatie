@@ -1,12 +1,15 @@
 package GUI.infrastructuredesign;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import GUI.Styling;
 import controllers.InfrastructureDesignController;
 import data.InfrastructureDesignComponent;
 
@@ -23,6 +26,8 @@ public class InfrastructureDesignContainer extends JPanel{
     private final int LAYER_WDITH = 1280;
     private final int LAYER_HEIGHT = 140;
 
+    private final Font LAYER_FONT = new Font("arial", Font.PLAIN, 16);
+
     private InfrastructureDesignController controller;
 
     public InfrastructureDesignContainer(InfrastructureDesignController controller){
@@ -33,31 +38,37 @@ public class InfrastructureDesignContainer extends JPanel{
 
         this.firewallLayerLabel = new JLabel("Firewall");
         this.firewallLayerLabel.setAlignmentX(LEFT_ALIGNMENT);
+        this.firewallLayerLabel.setForeground(Color.WHITE);
+        this.firewallLayerLabel.setFont(LAYER_FONT);
         
         this.webserverLayerLabel = new JLabel("Webservers");
         this.webserverLayerLabel.setAlignmentX(LEFT_ALIGNMENT);
+        this.webserverLayerLabel.setForeground(Color.WHITE);
+        this.webserverLayerLabel.setFont(LAYER_FONT);
         
         this.databaseLayerLabel = new JLabel("Webservers");
         this.databaseLayerLabel.setAlignmentX(LEFT_ALIGNMENT);
+        this.databaseLayerLabel.setForeground(Color.WHITE);
+        this.databaseLayerLabel.setFont(LAYER_FONT);
 
         this.firewallLayer = new JPanel();
         this.firewallLayer.setPreferredSize(new Dimension(LAYER_WDITH, LAYER_HEIGHT));
         this.firewallLayer.setLayout(new BoxLayout(firewallLayer, BoxLayout.LINE_AXIS));
         this.firewallLayer.setAlignmentX(LEFT_ALIGNMENT);
-        // this.firewallLayer.setBackground(Color.RED);
+        this.firewallLayer.setBackground(Styling.COLOR_LIGHT_BLUE);
 
 
         this.webserverLayer = new JPanel();
         this.webserverLayer.setPreferredSize(new Dimension(LAYER_WDITH, LAYER_HEIGHT));
         this.webserverLayer.setLayout(new BoxLayout(webserverLayer, BoxLayout.LINE_AXIS));
         this.webserverLayer.setAlignmentX(LEFT_ALIGNMENT);
-        // this.webserverLayer.setBackground(Color.GREEN);
+        this.webserverLayer.setBackground(Styling.COLOR_LIGHT_BLUE);
 
         this.databaseLayer = new JPanel();
         this.databaseLayer.setPreferredSize(new Dimension(LAYER_WDITH, LAYER_HEIGHT));
         this.databaseLayer.setLayout(new BoxLayout(databaseLayer, BoxLayout.LINE_AXIS));
         this.databaseLayer.setAlignmentX(LEFT_ALIGNMENT);
-        // this.databaseLayer.setBackground(Color.BLUE);
+        this.databaseLayer.setBackground(Styling.COLOR_LIGHT_BLUE);
 
 
         this.add(this.firewallLayerLabel);
