@@ -1,6 +1,7 @@
 package GUI.monitoring;
 
 import GUI.Styling;
+import controllers.InfrastructureDesignController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ public class MonitoringsGUI extends JDialog {
     private JTable table;
     private DatabaseTableModel model;
     private Timer timer;
+    private InfrastructureDesignController controller;
     private final int screenWidth = 786;
     private final int screenHeight = 576;
     public MonitoringsGUI(JFrame parent) {
@@ -22,6 +24,8 @@ public class MonitoringsGUI extends JDialog {
         setTitle("Monitoring");
         setSize(screenWidth, screenHeight);
         setLocationRelativeTo(null);
+
+        //controller.checkServer("loaclhost", 80);
 
         model = new DatabaseTableModel();
         table = new JTable(model);

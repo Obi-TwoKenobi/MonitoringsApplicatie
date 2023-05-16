@@ -14,6 +14,8 @@ import data.InfrastructureDesignComponent;
 import data.WebserverComponent;
 
 import java.io.*;
+import java.net.InetAddress;
+import java.net.Socket;
 
 public class InfrastructureDesignController {
     private InfrastructureDesignGUI infrastructureDesignGUI;
