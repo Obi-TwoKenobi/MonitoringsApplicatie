@@ -38,13 +38,13 @@ public class DatabaseTableModel extends AbstractTableModel{
                     row[5] = resultSet.getInt("uptime");
                     String server = resultSet.getString("server");
                     if (server.equals("webserver")){
-                        /*boolean isAvailable = checkWebserverAvailability(ip, 80);
-                        row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
-                        */
-                    } else if (server.equals("database")) {
-                        boolean isAvailable = checkDatabaseserverAvailability(ip, 3306);
+                        boolean isAvailable = checkWebserverAvailability(ip, 80);
                         row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
                         System.out.println("test");
+                    } else if (server.equals("database")) {
+                        /*boolean isAvailable = checkDatabaseserverAvailability(ip, 3306);
+                        row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
+                        System.out.println("test");*/
                     }
                     rows.add(row);
                 }
@@ -110,15 +110,13 @@ public class DatabaseTableModel extends AbstractTableModel{
     }
     public boolean checkDatabaseserverAvailability(String ipAddress, int port){
         try{
+            //Thread.sleep(3000);
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
-
-            Thread.sleep(3000);
-
             statement = connection.createStatement();
             resultSet = statement.executeQuery("SELECT * FROM componenten");
             connection.close();
             return true;
-        } catch (SQLException | InterruptedException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
