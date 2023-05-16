@@ -42,9 +42,9 @@ public class DatabaseTableModel extends AbstractTableModel{
                         row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
                         System.out.println("test");
                     } else if (server.equals("database")) {
-                        /*boolean isAvailable = checkDatabaseserverAvailability(ip, 3306);
+                        boolean isAvailable = checkDatabaseserverAvailability(ip, 3306);
                         row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
-                        System.out.println("test");*/
+                        System.out.println("test");
                     }
                     rows.add(row);
                 }
@@ -112,8 +112,6 @@ public class DatabaseTableModel extends AbstractTableModel{
         try{
             //Thread.sleep(3000);
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery("SELECT * FROM componenten");
             connection.close();
             return true;
         } catch (SQLException e) {
