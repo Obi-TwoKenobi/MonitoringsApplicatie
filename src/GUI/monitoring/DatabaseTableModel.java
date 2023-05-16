@@ -38,13 +38,13 @@ public class DatabaseTableModel extends AbstractTableModel{
                     row[5] = resultSet.getInt("uptime");
                     String server = resultSet.getString("server");
                     if (server.equals("webserver")){
-                        boolean isAvailable = checkWebserverAvailability(ip, 80);
+                        /*boolean isAvailable = checkWebserverAvailability(ip, 80);
                         row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
-                        System.out.println("ja/nee");
+                        */
                     } else if (server.equals("database")) {
                         boolean isAvailable = checkDatabaseserverAvailability(ip, 3306);
                         row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
-                        System.out.println("ja/nee");
+                        System.out.println("test");
                     }
                     rows.add(row);
                 }
