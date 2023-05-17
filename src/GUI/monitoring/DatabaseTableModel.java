@@ -1,9 +1,8 @@
 package GUI.monitoring;
-import java.lang.reflect.Executable;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.sql.*;
+import javax.swing.*;
 import javax.swing.table.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import controllers.InfrastructureDesignController;
 import java.io.IOException;
 
 public class DatabaseTableModel extends AbstractTableModel{
-    private InfrastructureDesignController controller;
+    private JDialog jDialog;
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
@@ -23,7 +22,11 @@ public class DatabaseTableModel extends AbstractTableModel{
     private String[] columnNames = {"Hostnaam", "cpu load", "Totale opslag", "Gebruikte opslag", "vrije opslag", "uptime", "beschikbaar"};
 
 
-    public void DatabaseTableModel() {
+    public DatabaseTableModel(JDialog jDialog) {
+        this.jDialog = jDialog;
+    }
+
+    public void tableModel() {
             try {
                 connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
                 statement = connection.createStatement();
@@ -42,24 +45,19 @@ public class DatabaseTableModel extends AbstractTableModel{
                     if (server.equals("webserver")){
                         boolean isAvailable = checkWebserverAvailability(ip, 80);
                         row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
-                        //System.out.println("test");
                     } else if (server.equals("database")) {
-                        /*boolean isAvailable = checkDatabaseserverAvailability(ip, 3306);
+                        boolean isAvailable = checkDatabaseserverAvailability(ip, 3306);
                         row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
-                        System.out.println("test");*/
-                        boolean beschikbaar = checkdatabaseAvailability(ip, 3306);
-                        row[6] = beschikbaar ? "Yes" : "No";
-
                     }
                     rows.add(row);
                 }
                 data = rows.toArray(new Object[0][]);
                 fireTableDataChanged();
             } catch (SQLException e) {
+                JOptionPane.showMessageDialog(jDialog, "Databaseserver niet bereikbaar!", "Fout", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
         }
-
 
     @Override
     public int getRowCount() {
@@ -104,24 +102,9 @@ public class DatabaseTableModel extends AbstractTableModel{
         try {
             InetAddress inetAddress = InetAddress.getByName(ipAddress);
             Socket socket = new Socket(inetAddress, port);
-            System.out.println("Verbinding gemaakt met de webserver op " + ipAddress + ":" + port);
             socket.close();
             return true;
         } catch (IOException e) {
-            System.out.println("Kon geen verbinding maken met de webserver op " + ipAddress + ":" + port);
-            e.printStackTrace();
-            return false;
-        }
-    }
-    public boolean checkdatabaseAvailability(String ipAddress, int port){
-        try {
-            InetAddress inetAddress = InetAddress.getByName(ipAddress);
-            Socket socket = new Socket(inetAddress, port);
-            System.out.println("Verbinding gemaakt met de database op " + ipAddress + ":" + port);
-            socket.close();
-            return true;
-        } catch (IOException e) {
-            System.out.println("Kon geen verbinding maken met de database op " + ipAddress + ":" + port);
             e.printStackTrace();
             return false;
         }
@@ -131,8 +114,10 @@ public class DatabaseTableModel extends AbstractTableModel{
             //Thread.sleep(3000);
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
             connection.close();
+            JOptionPane jOptionPane = new JOptionPane("Databaseservers down");
             return true;
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(jDialog, "Fout bij het controleren van de databaseserver!", "Fout", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return false;
         }

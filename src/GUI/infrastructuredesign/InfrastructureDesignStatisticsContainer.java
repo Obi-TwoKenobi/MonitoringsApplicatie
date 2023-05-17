@@ -101,7 +101,7 @@ public class InfrastructureDesignStatisticsContainer extends JPanel{
 
     public void updateView(){
         double roundedNumber = Math.round(this.controller.getCurrentlyActiveDesign().calculateAvailabilityPercentage() * Math.pow(10, 5)) / Math.pow(10, 5);
-        this.availabilityPercentageLabel.setText("Beschikbaarheid ontwerp: " + roundedNumber * 100 + "%");
+        this.availabilityPercentageLabel.setText("Beschikbaarheid ontwerp: " + this.controller.getCurrentlyActiveDesign().calculateAvailabilityPercentage() * 100 + "%");
         this.totalDesignCostLabel.setText("Prijs ontwerp: € " + this.controller.getCurrentlyActiveDesign().calculateTotalPrice());
     }
 }
