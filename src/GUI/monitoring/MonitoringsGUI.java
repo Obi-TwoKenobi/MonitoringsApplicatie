@@ -29,8 +29,8 @@ public class MonitoringsGUI extends JDialog {
 
         // model = new DatabaseTableModel();
         table = new JTable();
-        // add(new JScrollPane(table), BorderLayout.CENTER);
-        // model.DatabaseTableModel();
+        add(new JScrollPane(table), BorderLayout.CENTER);
+        model.DatabaseTableModel();
 
         this.table.setBackground(Styling.COLOR_LIGHT_BLUE);
         this.table.setForeground(Color.WHITE);
