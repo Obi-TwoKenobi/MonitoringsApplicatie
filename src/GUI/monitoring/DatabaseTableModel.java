@@ -113,7 +113,6 @@ public class DatabaseTableModel extends AbstractTableModel{
             //Thread.sleep(3000);
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
             connection.close();
-            JOptionPane jOptionPane = new JOptionPane("Databaseservers down");
             return true;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jDialog, "Fout bij het controleren van de databaseserver!", "Fout", JOptionPane.ERROR_MESSAGE);
