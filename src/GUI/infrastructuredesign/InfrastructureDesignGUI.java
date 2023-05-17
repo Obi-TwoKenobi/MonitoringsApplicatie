@@ -27,11 +27,13 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
     private JMenuItem fileMenuSaveDesignItem;
     private JMenuItem fileMenuSaveDesignAsItem;
     private JMenuItem fileMenuCloseDesignItem;
+    private JMenuItem generateOptimalDesignItem;
 
     private InfrastructureItemSelectionContainer itemSelectionContainer;
     private InfrastructureDesignContainer designContainer;
     private InfrastructureDesignStatisticsContainer designStatisticsContainer;
     private InfrastructureDesignController controller;
+    private OptimalInfrastructureDesignDialog optimalInfrastructureDesignDialog;
 
 
     public InfrastructureDesignGUI(JFrame parent) {
@@ -41,6 +43,8 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
         this.fileMenu = new JMenu("Bestand");
         this.generateOptimalDesignMenu = new JMenu("ontwerp genereren");
 
+        this.generateOptimalDesignItem = new JMenuItem("Genereren");
+        generateOptimalDesignItem.addActionListener(this);
         this.fileMenuNewDesignItem = new JMenuItem("Nieuw bestand");
         fileMenuNewDesignItem.addActionListener(this);
         this.fileMenuLoadDesignItem = new JMenuItem("Bestand openen");
@@ -70,6 +74,7 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
         this.fileMenu.add(fileMenuCloseDesignItem);
 
         this.topMenubar.add(generateOptimalDesignMenu);
+        this.generateOptimalDesignMenu.add(generateOptimalDesignItem);
 
         this.setJMenuBar(topMenubar);
         this.setSize(GUI_WIDTH, GUI_HEIGHT);
@@ -166,6 +171,9 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
                     exception.printStackTrace();
                 }
             }
+        }
+        if (e.getSource().equals(generateOptimalDesignItem)){
+            this.optimalInfrastructureDesignDialog = new OptimalInfrastructureDesignDialog(this, controller);
         }
     }
 }
