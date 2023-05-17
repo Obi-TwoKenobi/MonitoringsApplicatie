@@ -1,5 +1,8 @@
 package GUI.monitoring;
 
+import GUI.Styling;
+import controllers.InfrastructureDesignController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,28 +12,28 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MonitoringsGUI extends JFrame {
+public class MonitoringsGUI extends JDialog {
     private JTable table;
     private DatabaseTableModel model;
     private Timer timer;
+    private InfrastructureDesignController controller;
     private final int screenWidth = 786;
     private final int screenHeight = 576;
-    private final int[] NerdyGadgetsDonkerBlauw = {35, 35 ,47};
-    private final int[] NerdyGadgetsLichterBlauw = {35, 35 ,80};
-
-    public MonitoringsGUI() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public MonitoringsGUI(JFrame parent) {
+        super(parent, false);
         setTitle("Monitoring");
         setSize(screenWidth, screenHeight);
         setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel();
-        getContentPane().add(panel);
+        //controller.checkServer("loaclhost", 80);
 
         model = new DatabaseTableModel();
         table = new JTable(model);
         add(new JScrollPane(table), BorderLayout.CENTER);
+        model.DatabaseTableModel();
 
+        this.table.setBackground(Styling.COLOR_LIGHT_BLUE);
+        this.table.setForeground(Color.WHITE);
         // create a timer to refresh the data every 3 seconds
         timer = new Timer(3000, new ActionListener() {
             @Override
@@ -40,8 +43,6 @@ public class MonitoringsGUI extends JFrame {
             }
         });
         timer.start();
-
         pack();
-        setVisible(true);
     }
 }
