@@ -1,6 +1,8 @@
 package GUI.monitoring;
+import java.lang.reflect.Executable;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.sql.*;
 import javax.swing.table.*;
 import java.util.ArrayList;
@@ -40,11 +42,14 @@ public class DatabaseTableModel extends AbstractTableModel{
                     if (server.equals("webserver")){
                         boolean isAvailable = checkWebserverAvailability(ip, 80);
                         row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
-                        System.out.println("test");
+                        //System.out.println("test");
                     } else if (server.equals("database")) {
-                        boolean isAvailable = checkDatabaseserverAvailability(ip, 3306);
+                        /*boolean isAvailable = checkDatabaseserverAvailability(ip, 3306);
                         row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
-                        System.out.println("test");
+                        System.out.println("test");*/
+                        boolean beschikbaar = checkdatabaseAvailability(ip, 3306);
+                        row[6] = beschikbaar ? "Yes" : "No";
+
                     }
                     rows.add(row);
                 }
@@ -108,13 +113,26 @@ public class DatabaseTableModel extends AbstractTableModel{
             return false;
         }
     }
+    public boolean checkdatabaseAvailability(String ipAddress, int port){
+        try {
+            InetAddress inetAddress = InetAddress.getByName(ipAddress);
+            Socket socket = new Socket(inetAddress, port);
+            System.out.println("Verbinding gemaakt met de database op " + ipAddress + ":" + port);
+            socket.close();
+            return true;
+        } catch (IOException e) {
+            System.out.println("Kon geen verbinding maken met de database op " + ipAddress + ":" + port);
+            e.printStackTrace();
+            return false;
+        }
+    }
     public boolean checkDatabaseserverAvailability(String ipAddress, int port){
         try{
             //Thread.sleep(3000);
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/monitoringstest", "root", "");
             connection.close();
             return true;
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
