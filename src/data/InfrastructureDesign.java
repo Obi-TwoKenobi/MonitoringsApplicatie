@@ -23,7 +23,7 @@ public class InfrastructureDesign implements Serializable {
     }
 
     public double calculateAvailabilityPercentage(){
-        System.out.println(this.webserverLayer.calculateAvailabilityPercentage());
+        // System.out.println(this.webserverLayer.calculateAvailabilityPercentage());
         return this.firewallLayer.calculateAvailabilityPercentage() * this.webserverLayer.calculateAvailabilityPercentage() * this.databaseLayer.calculateAvailabilityPercentage();
     }
     
