@@ -1,7 +1,7 @@
 package controllers;
 
 import javax.management.RuntimeErrorException;
-import javax.swing.JComponent;
+import javax.swing.*;
 
 import GUI.infrastructuredesign.DesignComponent;
 import GUI.infrastructuredesign.InfrastructureDesignContainer;
@@ -65,13 +65,19 @@ public class InfrastructureDesignController {
 
     public boolean addComponentToLayer(InfrastructureDesignComponent component){
         if(component instanceof WebserverComponent){
-            if(this.getCurrentlyActiveDesign().getWebserverLayer().getInfrastructureComponents().size() >= this.getCurrentlyActiveDesign().getWebserverLayer().MAX_WEB_SERVERS) return false;
+            if(this.getCurrentlyActiveDesign().getWebserverLayer().getInfrastructureComponents().size() >= this.getCurrentlyActiveDesign().getWebserverLayer().MAX_WEB_SERVERS){
+                String[] options = {"Ok"};
+                JOptionPane.showMessageDialog(infrastructureDesignGUI, "U heeft het maximum aantal van 6 webservers bereikt.", "Maximum Webservers", JOptionPane.ERROR_MESSAGE);return false;}
             this.getCurrentlyActiveDesign().getWebserverLayer().getInfrastructureComponents().add((WebserverComponent)component);
         }else if (component instanceof DatabaseserverComponent){
-            if(this.getCurrentlyActiveDesign().getDatabaseLayer().getInfrastructureComponents().size() >= this.getCurrentlyActiveDesign().getDatabaseLayer().MAX_DATABASE_SERVERS) return false;
+            if(this.getCurrentlyActiveDesign().getDatabaseLayer().getInfrastructureComponents().size() >= this.getCurrentlyActiveDesign().getDatabaseLayer().MAX_DATABASE_SERVERS){
+                String[] options = {"Ok"};
+                JOptionPane.showMessageDialog(infrastructureDesignGUI, "U heeft het maximum aantal van 6 databaseservers bereikt.", "Maximum databaseservers", JOptionPane.ERROR_MESSAGE);return false;}
             this.getCurrentlyActiveDesign().getDatabaseLayer().getInfrastructureComponents().add((DatabaseserverComponent)component);
         }else if(component instanceof FirewallComponent){
-            if(this.getCurrentlyActiveDesign().getFirewallLayer().getInfrastructureComponents().size() >= this.getCurrentlyActiveDesign().getFirewallLayer().MAX_FIREWALLS) return false;
+            if(this.getCurrentlyActiveDesign().getFirewallLayer().getInfrastructureComponents().size() >= this.getCurrentlyActiveDesign().getFirewallLayer().MAX_FIREWALLS){
+                String[] options = {"Ok"};
+                JOptionPane.showMessageDialog(infrastructureDesignGUI, "U heeft het maximum aantal van 1 firewall bereikt.", "Maximum firewall", JOptionPane.ERROR_MESSAGE);return false;}
             this.getCurrentlyActiveDesign().getFirewallLayer().getInfrastructureComponents().add((FirewallComponent)component);
             
         }

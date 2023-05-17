@@ -71,6 +71,7 @@ public class MainScreen extends JPanel implements ActionListener {
 
         this.ontwerpButton = new JButton(ontwerpIcon);
         infrastructureDesignGUI = new InfrastructureDesignGUI(hoofdscherm);
+        infrastructureDesignGUI.setSize(1400,600);
         ontwerpButton.setBounds(400, 200, size.width, size.height);
         ontwerpButton.addActionListener(this);
         add(ontwerpButton);
