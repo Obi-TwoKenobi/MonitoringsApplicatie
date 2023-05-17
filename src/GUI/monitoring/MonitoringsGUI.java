@@ -7,10 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class MonitoringsGUI extends JDialog {
     private JTable table;
@@ -25,12 +21,10 @@ public class MonitoringsGUI extends JDialog {
         setSize(screenWidth, screenHeight);
         setLocationRelativeTo(null);
 
-        //controller.checkServer("loaclhost", 80);
-
-        model = new DatabaseTableModel();
-        table = new JTable();
+        model = new DatabaseTableModel(this);
+        table = new JTable(model);
         add(new JScrollPane(table), BorderLayout.CENTER);
-        model.DatabaseTableModel();
+        model.tableModel();
 
         this.table.setBackground(Styling.COLOR_LIGHT_BLUE);
         this.table.setForeground(Color.WHITE);
@@ -39,7 +33,7 @@ public class MonitoringsGUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // update the table data
-                model.DatabaseTableModel();
+                model.tableModel();
             }
         });
         timer.start();

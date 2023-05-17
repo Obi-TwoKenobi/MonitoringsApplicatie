@@ -14,7 +14,6 @@ public abstract class ComponentLayer<T extends InfrastructureDesignComponent> im
 		if(this.getInfrastructureComponents().size() > 1) {
 			for(T comp : this.getInfrastructureComponents()) {
 				layerPercentage *= (1 - comp.getAvailabilityPercentage());
-				System.out.println(layerPercentage);
 			}
 			layerPercentage = (1 - layerPercentage);
 			return layerPercentage;

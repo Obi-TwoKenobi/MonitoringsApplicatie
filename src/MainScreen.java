@@ -65,7 +65,7 @@ public class MainScreen extends JPanel implements ActionListener {
         ontwerpLabel.setForeground(Color.white);
 
         this.monitoringButton = new JButton(monitoringIcon);
-        monitoringsGUI = new MonitoringsGUI(hoofdscherm);
+        //monitoringsGUI = new MonitoringsGUI(hoofdscherm);
         monitoringButton.addActionListener(this);
         Dimension monitoringButtonPreferredSize = monitoringButton.getPreferredSize();
         monitoringButton.setBounds(80, 200, monitoringButtonPreferredSize.width, monitoringButtonPreferredSize.height);
@@ -107,7 +107,8 @@ public class MainScreen extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(monitoringButton)){
-            this.monitoringsGUI.setVisible(true);
+            monitoringsGUI = new MonitoringsGUI(hoofdscherm);
+            monitoringsGUI.setVisible(true);
         }else if(e.getSource().equals(ontwerpButton)){
             this.infrastructureDesignGUI.setVisible(true);
         }
