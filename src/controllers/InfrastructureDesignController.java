@@ -112,4 +112,10 @@ public class InfrastructureDesignController {
     public void setCurrentlyActiveDesign(InfrastructureDesign design){
         this.currentlyActiveDesign = design;
     }
+    public void placeholderMethodBacktracking(double beschikbaarheidspercentage){
+        System.out.println(beschikbaarheidspercentage);
+    }
+    public void placeholderMethodIsValid(){
+
+    }
 }
