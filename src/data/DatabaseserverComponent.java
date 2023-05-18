@@ -11,5 +11,11 @@ public class DatabaseserverComponent extends InfrastructureDesignComponent imple
     public DatabaseserverComponent(String name, double availabilityPercentage, double pricePerYear) {
         super(name, availabilityPercentage, pricePerYear);
     }
+
+    @Override
+	protected Object clone() throws CloneNotSupportedException {
+        DatabaseserverComponent clone = new DatabaseserverComponent(super.getName(), super.getAvailabilityPercentage(), super.getPricePerYear());
+        return clone;
+    }
     
 }

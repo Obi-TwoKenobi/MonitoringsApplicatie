@@ -29,6 +29,7 @@ public abstract class ComponentLayer<T extends InfrastructureDesignComponent> im
 				"infrastructureComponenetsList=" + infrastructureComponenetsList +
 				'}';
 	}
+
 	public ArrayList<T> getInfrastructureComponents(){
         return this.infrastructureComponenetsList;
     }
