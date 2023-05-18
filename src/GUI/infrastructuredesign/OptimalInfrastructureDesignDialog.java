@@ -42,10 +42,15 @@ public class OptimalInfrastructureDesignDialog extends JDialog implements Action
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(generateDesignButton)){
-            String availability = availibilityPercentageField.getText();
-            availability = availability.replace(",", ".");
+            try {
+                String availability = availibilityPercentageField.getText();
+                availability = availability.replace(",", ".");
+                double beschikbaarheidpercentage = Double.parseDouble(availability);
+                controller.placeholderMethodBacktracking(beschikbaarheidpercentage);
+            } catch (NumberFormatException nfe){
+                JOptionPane.showMessageDialog(this, "Vul een geldige waarde in!", "Fout", JOptionPane.ERROR_MESSAGE);
+            }
 
-            double beschikbaarheidpercentage = Double.parseDouble(availability);
             //InfrastuctureDesign infrastructureDesignOutput = controller.Backtracking(beschikbaarheidspercentage);
             //if(infrastructureDesignOutput != null){
             //boolean valid = infrastuctureDesignOutput.isValid
@@ -55,7 +60,7 @@ public class OptimalInfrastructureDesignDialog extends JDialog implements Action
             // geef bericht fout kan niet
             //}
             //}
-            controller.placeholderMethodBacktracking(beschikbaarheidpercentage);
+
         }
         if (e.getSource().equals(closeButton)){
             this.dispose();
