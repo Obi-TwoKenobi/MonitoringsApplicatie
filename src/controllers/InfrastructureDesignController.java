@@ -118,4 +118,30 @@ public class InfrastructureDesignController {
     public void placeholderMethodIsValid(){
 
     }
+    private double currentLowestPrice = 999999999999999.0;
+    private final int MIN_FIREWALLS = 1;
+    private final int MIN_WEBSERVERS = 1;
+    private final int MIN_DATABASESERVERS = 1;
+    public boolean isValidDesign(InfrastructureDesign design, double availabilityPercentage) {
+        //TODO finetunen van isValidDesign, werkt volgens mij(Joey) niet helemaal als verwacht.
+        boolean desginHasCorrectAvailabilityPercentage = design.calculateAvailabilityPercentage() >= availabilityPercentage;
+
+        boolean designIsCheaperThenCheapestGeneratedDesign = design.calculateTotalPrice() <= this.currentLowestPrice;
+
+        boolean desginHasMoreThenMinFirewalls = design.getFirewallLayer().getInfrastructureComponents().size() >= MIN_FIREWALLS;
+        boolean designHasMoreThenMinWebservers = design.getWebserverLayer().getInfrastructureComponents().size() >= MIN_WEBSERVERS;
+        boolean designHasMoreThenMinDBServers = design.getDatabaseLayer().getInfrastructureComponents().size() >= MIN_DATABASESERVERS;
+
+        boolean designHasMoreThenMinComponents = desginHasMoreThenMinFirewalls && designHasMoreThenMinWebservers && designHasMoreThenMinDBServers;
+
+        boolean designHasRightAvailabilityAndPrice = desginHasCorrectAvailabilityPercentage && designIsCheaperThenCheapestGeneratedDesign;
+
+        boolean isAcceptableDesign = designHasMoreThenMinComponents && designHasRightAvailabilityAndPrice;
+        return isAcceptableDesign;
+		/*if(isAcceptableDesign) {
+			return true;
+		}else {
+			return false;
+		}*/
+    }
 }
