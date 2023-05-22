@@ -60,7 +60,8 @@ public class OptimalInfrastructureDesignGenerator {
 		return isAcceptableDesign;
 	}
 
-	private void backtrack(int webIndex, int dbIndex, InfrastructureDesign design, double targetPercentage) throws Exception {
+	private void backtrack(int index, InfrastructureDesign design, double targetPercentage) throws Exception {
+		System.out.println(design);
 		if (this.isValidDesign(design, targetPercentage)) {
 			try {
 				this.currentLowestPrice = design.calculateTotalPrice();
@@ -72,14 +73,13 @@ public class OptimalInfrastructureDesignGenerator {
 		}
 
 		// Explore all combinations of webservers and databaseservers
-		for (; webIndex < this.AVAILABLE_WEBSERVERS.size(); webIndex++) {
+		for (int webIndex = index; webIndex < this.AVAILABLE_WEBSERVERS.size(); webIndex++) {
 			design.getWebserverLayer().getInfrastructureComponents().add(AVAILABLE_WEBSERVERS.get(webIndex));
-			for (; dbIndex < this.AVAILABLE_DBSERVERS.size(); dbIndex++) {
+			for (int dbIndex = index; dbIndex < this.AVAILABLE_DBSERVERS.size(); dbIndex++) {
 				design.getDatabaseLayer().getInfrastructureComponents().add(AVAILABLE_DBSERVERS.get(dbIndex));
-				this.backtrack(webIndex + 1, dbIndex + 1, design, targetPercentage);
+				this.backtrack(index + 1, design, targetPercentage);
 				design.getDatabaseLayer().getInfrastructureComponents().remove(design.getDatabaseLayer().getInfrastructureComponents().size() - 1);
 			}
-			dbIndex = 0; // Reset dbIndex for the next webserver iteration
 			design.getWebserverLayer().getInfrastructureComponents().remove(design.getWebserverLayer().getInfrastructureComponents().size() - 1);
 		}
 	}
@@ -88,7 +88,7 @@ public class OptimalInfrastructureDesignGenerator {
         design.getFirewallLayer().getInfrastructureComponents().add(AVAILABLE_FIREWALLS.get(0));
 		design.getDatabaseLayer().getInfrastructureComponents().add(AVAILABLE_DBSERVERS.get(0));
 		design.getWebserverLayer().getInfrastructureComponents().add(AVAILABLE_WEBSERVERS.get(0));
-		backtrack(0,0, design, targetPercentage);
+		backtrack(0, design, targetPercentage);
 		return this.generatedInfrastructureDesign;
 	}
 
