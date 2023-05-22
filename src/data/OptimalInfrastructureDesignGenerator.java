@@ -42,9 +42,6 @@ public class OptimalInfrastructureDesignGenerator {
 
 
     private boolean isValidDesign(InfrastructureDesign design, double availabilityPercentage) {
-        //TODO finetunen van isValidDesign, werkt volgens mij(Joey) niet helemaal als verwacht.
-		//TODO volgens mij klopt ie wel zit alleen fout in het gebruik wss(Lars)
-
 		//check of de prijs en beschikbaarheid kloppen
 		boolean desginHasCorrectAvailabilityPercentage = design.calculateAvailabilityPercentage() > availabilityPercentage;
         boolean designIsCheaperThenCheapestGeneratedDesign = design.calculateTotalPrice() <= this.currentLowestPrice;
@@ -54,22 +51,23 @@ public class OptimalInfrastructureDesignGenerator {
 		// boolean desginHasLessThenMaxFirewalls = design.getFirewallLayer().getInfrastructureComponents().size() <= MAX_FIREWALLS;
 		// boolean designHasLessThenMaxWebservers = design.getWebserverLayer().getInfrastructureComponents().size() <= MAX_WEBSERVERS;
 		// boolean designHasLessThenMaxDBServers = design.getDatabaseLayer().getInfrastructureComponents().size() <= MAX_DATABASESERVERS;
-		// boolean desginHasMoreThenMinFirewalls = design.getFirewallLayer().getInfrastructureComponents().size() >= MIN_FIREWALLS;
-		// boolean designHasMoreThenMinWebservers = design.getWebserverLayer().getInfrastructureComponents().size() >= MIN_WEBSERVERS;
-		// boolean designHasMoreThenMinDBServers = design.getDatabaseLayer().getInfrastructureComponents().size() >= MIN_DATABASESERVERS;
-		// boolean designHasMoreThenMinComponents = desginHasMoreThenMinFirewalls && designHasMoreThenMinWebservers && designHasMoreThenMinDBServers;
+		boolean desginHasMoreThenMinFirewalls = design.getFirewallLayer().getInfrastructureComponents().size() >= MIN_FIREWALLS;
+		boolean designHasMoreThenMinWebservers = design.getWebserverLayer().getInfrastructureComponents().size() >= MIN_WEBSERVERS;
+		boolean designHasMoreThenMinDBServers = design.getDatabaseLayer().getInfrastructureComponents().size() >= MIN_DATABASESERVERS;
+		boolean designHasMoreThenMinComponents = desginHasMoreThenMinFirewalls && designHasMoreThenMinWebservers && designHasMoreThenMinDBServers;
 
 		//check of de combinatie van beide klopt
 		boolean designHasRightAvailabilityAndPrice = desginHasCorrectAvailabilityPercentage && designIsCheaperThenCheapestGeneratedDesign;
-		boolean isAcceptableDesign = designHasRightAvailabilityAndPrice;
+		boolean isAcceptableDesign = designHasMoreThenMinComponents && designHasRightAvailabilityAndPrice;
 
 		//wanneer het kan returned het true anders false
 		return isAcceptableDesign;
 	}
 
 	private void backtrack(int index, InfrastructureDesign design, double targetPercentage) throws Exception {
+		System.out.println(design);
 		if (isValidDesign(design, targetPercentage)) {
-			System.out.println(design);
+			//System.out.println(design);
 			try {
 				if (design.calculateTotalPrice() < this.currentLowestPrice){
 					System.out.println(design);
@@ -96,9 +94,14 @@ public class OptimalInfrastructureDesignGenerator {
 	public InfrastructureDesign generateOptimizedDesign(double targetPercentage) throws Exception {
 		InfrastructureDesign design = new InfrastructureDesign();
         design.getFirewallLayer().getInfrastructureComponents().add(AVAILABLE_FIREWALLS.get(0));
+		design.getDatabaseLayer().getInfrastructureComponents().add(AVAILABLE_DBSERVERS.get(0));
+		design.getWebserverLayer().getInfrastructureComponents().add(AVAILABLE_WEBSERVERS.get(0));
 		backtrack(0, design, targetPercentage);
 		return this.generatedInfrastructureDesign;
 	}
 
-
+	@Override
+	public String toString() {
+		return generatedInfrastructureDesign.calculateAvailabilityPercentage() + " " + generatedInfrastructureDesign.calculateTotalPrice();
+	}
 }

@@ -23,9 +23,7 @@ public abstract class ComponentLayer<T extends InfrastructureDesignComponent> im
 
 	@Override
 	public String toString() {
-		return "ComponentLayer{" +
-				"infrastructureComponenetsList=" + infrastructureComponentsList +
-				'}';
+		return "ComponentLayer{" + infrastructureComponentsList;
 	}
 
 	public ArrayList<T> getInfrastructureComponents(){

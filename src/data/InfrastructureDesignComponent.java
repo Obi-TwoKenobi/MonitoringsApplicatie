@@ -42,10 +42,6 @@ public class InfrastructureDesignComponent implements Serializable {
 
     @Override
     public String toString() {
-        return "InfrastructureDesignComponent{" +
-                "name='" + name + '\'' +
-                ", availabilityPercentage=" + availabilityPercentage +
-                ", pricePerYear=" + pricePerYear +
-                '}';
+        return pricePerYear + " " + availabilityPercentage;
     }
 }

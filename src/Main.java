@@ -9,7 +9,7 @@ public class Main {
         // test code voor backtracking
         OptimalInfrastructureDesignGenerator dg = new OptimalInfrastructureDesignGenerator();
         System.out.println(dg.generateOptimizedDesign(0.9999));
-        // System.out.println(ids.calculateTotalPrice());
+        System.out.println(dg);
 
         try {
             UIManager.setLookAndFeel(

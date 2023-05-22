@@ -77,9 +77,7 @@ public class InfrastructureDesign implements Serializable, Cloneable {
 
     @Override
     public String toString() {
-        return "InfrastructureDesign{" +
-                "firewallLayer=" + firewallLayer +
-                ", webserverLayer=" + webserverLayer +
+        return "webserverLayer=" + webserverLayer +
                 ", databaseLayer=" + databaseLayer +
                 '}';
     }
