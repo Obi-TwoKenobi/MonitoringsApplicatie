@@ -8,10 +8,8 @@ public class Main {
 
         // test code voor backtracking
         OptimalInfrastructureDesignGenerator dg = new OptimalInfrastructureDesignGenerator();
-        InfrastructureDesign ids = dg.generateOptimizedDesign(0.9999);
-        System.out.println(ids);
-        System.out.println(ids.calculateAvailabilityPercentage());
-        System.out.println(ids.calculateTotalPrice());
+        System.out.println(dg.generateOptimizedDesign(0.9999));
+        // System.out.println(ids.calculateTotalPrice());
 
         try {
             UIManager.setLookAndFeel(
