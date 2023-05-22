@@ -1,6 +1,5 @@
 package data;
 
-import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -12,12 +11,12 @@ public class FirewallLayer extends ComponentLayer<FirewallComponent> implements 
 	}
 	
 	public FirewallLayer(ArrayList<FirewallComponent> infrastructureArrayList){
-		this.infrastructureComponenetsList = infrastructureArrayList;
+		this.infrastructureComponentsList = infrastructureArrayList;
 	}
 
     @Override
 	protected Object clone() throws CloneNotSupportedException {
-        FirewallLayer clone = new FirewallLayer((ArrayList<FirewallComponent>)this.infrastructureComponenetsList.clone());
+        FirewallLayer clone = new FirewallLayer((ArrayList<FirewallComponent>)this.infrastructureComponentsList.clone());
         return clone;
     }
 }

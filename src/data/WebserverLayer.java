@@ -12,12 +12,12 @@ public class WebserverLayer extends ComponentLayer<WebserverComponent> implement
 	}
 	
 	public WebserverLayer(ArrayList<WebserverComponent> infrastructureArrayList){
-		this.infrastructureComponenetsList = infrastructureArrayList;
+		this.infrastructureComponentsList = infrastructureArrayList;
 	}
 
     @Override
 	protected Object clone() throws CloneNotSupportedException {
-        WebserverLayer clone = new WebserverLayer((ArrayList<WebserverComponent>)this.infrastructureComponenetsList.clone());
+        WebserverLayer clone = new WebserverLayer((ArrayList<WebserverComponent>)this.infrastructureComponentsList.clone());
         return clone;
     }
 }

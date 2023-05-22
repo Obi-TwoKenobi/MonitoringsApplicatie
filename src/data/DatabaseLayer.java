@@ -12,12 +12,12 @@ public class DatabaseLayer extends ComponentLayer<DatabaseserverComponent> imple
 	}
 	
 	public DatabaseLayer(ArrayList<DatabaseserverComponent> infrastructureArrayList){
-		this.infrastructureComponenetsList = infrastructureArrayList;
+		this.infrastructureComponentsList = infrastructureArrayList;
 	}
 
     @Override
 	protected Object clone() throws CloneNotSupportedException {
-        DatabaseLayer clone = new DatabaseLayer((ArrayList<DatabaseserverComponent>)this.infrastructureComponenetsList.clone());
+        DatabaseLayer clone = new DatabaseLayer((ArrayList<DatabaseserverComponent>)this.infrastructureComponentsList.clone());
         return clone;
     }
 

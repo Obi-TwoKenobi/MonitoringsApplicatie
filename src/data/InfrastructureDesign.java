@@ -10,6 +10,7 @@ public class InfrastructureDesign implements Serializable, Cloneable {
     private FirewallLayer firewallLayer;
     private WebserverLayer webserverLayer;
     private DatabaseLayer databaseLayer;
+    private BackTrackingComponents backTrackingComponents;
 
     private String savedFilePath;
 
@@ -18,6 +19,7 @@ public class InfrastructureDesign implements Serializable, Cloneable {
         this.firewallLayer = new FirewallLayer();
         this.webserverLayer = new WebserverLayer();
         this.databaseLayer = new DatabaseLayer();
+        this.backTrackingComponents = new BackTrackingComponents();
     }
 
     public InfrastructureDesign(FirewallLayer firewallLayer, WebserverLayer webserverLayer, DatabaseLayer databaseLayer){
@@ -50,7 +52,9 @@ public class InfrastructureDesign implements Serializable, Cloneable {
     public DatabaseLayer getDatabaseLayer(){
         return this.databaseLayer;
     }
-
+    public BackTrackingComponents getBackTrackingComponents(){
+        return this.backTrackingComponents;
+    }
     public void setSavedFilePath(String savedFilePath) {
         this.savedFilePath = savedFilePath;
     }

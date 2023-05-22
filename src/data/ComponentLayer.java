@@ -1,12 +1,10 @@
 package data;
 
-import com.sun.source.doctree.SerialDataTree;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public abstract class ComponentLayer<T extends InfrastructureDesignComponent> implements Serializable {
-    protected ArrayList<T> infrastructureComponenetsList = new ArrayList<T>();
+    protected ArrayList<T> infrastructureComponentsList = new ArrayList<T>();
 
     protected double calculateAvailabilityPercentage(){
         double layerPercentage = 1;
@@ -26,11 +24,11 @@ public abstract class ComponentLayer<T extends InfrastructureDesignComponent> im
 	@Override
 	public String toString() {
 		return "ComponentLayer{" +
-				"infrastructureComponenetsList=" + infrastructureComponenetsList +
+				"infrastructureComponenetsList=" + infrastructureComponentsList +
 				'}';
 	}
 
 	public ArrayList<T> getInfrastructureComponents(){
-        return this.infrastructureComponenetsList;
+        return this.infrastructureComponentsList;
     }
 }

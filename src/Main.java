@@ -4,11 +4,11 @@ import data.InfrastructureDesign;
 import data.OptimalInfrastructureDesignGenerator;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         // test code voor backtracking
         OptimalInfrastructureDesignGenerator dg = new OptimalInfrastructureDesignGenerator();
-        InfrastructureDesign ids = dg.generateOptimizedDesign(0.99);
+        InfrastructureDesign ids = dg.generateOptimizedDesign(0.9999);
         System.out.println(ids);
         System.out.println(ids.calculateAvailabilityPercentage());
         System.out.println(ids.calculateTotalPrice());
