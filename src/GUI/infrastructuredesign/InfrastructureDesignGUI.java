@@ -10,6 +10,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import GUI.Styling;
 import controllers.InfrastructureDesignController;
+import data.OptimalInfrastructureDesignGenerator;
+import exceptions.Infrastructuredesign.NoSuitableInfrastructureDesignException;
 
 public class InfrastructureDesignGUI extends JDialog implements ActionListener {
 
@@ -39,6 +41,13 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
     public InfrastructureDesignGUI(JFrame parent) {
         super(parent, false);
         this.controller = new InfrastructureDesignController(this);
+        
+        OptimalInfrastructureDesignGenerator dg = new OptimalInfrastructureDesignGenerator();
+        try{
+            this.controller.setCurrentlyActiveDesign(dg.generateOptimizedDesign(0.9999));
+        }catch(NoSuitableInfrastructureDesignException nsie){
+            System.out.println(nsie.getMessage());
+        }
 
         this.fileMenu = new JMenu("Bestand");
         this.generateOptimalDesignMenu = new JMenu("ontwerp genereren");

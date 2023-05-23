@@ -6,13 +6,6 @@ import data.OptimalInfrastructureDesignGenerator;
 public class Main {
     public static void main(String[] args) {
 
-        // test code voor backtracking
-        OptimalInfrastructureDesignGenerator dg = new OptimalInfrastructureDesignGenerator();
-        InfrastructureDesign ids = dg.generateOptimizedDesign(0.99);
-        System.out.println(ids);
-        System.out.println(ids.calculateAvailabilityPercentage());
-        System.out.println(ids.calculateTotalPrice());
-
         try {
             UIManager.setLookAndFeel(
                 UIManager.getSystemLookAndFeelClassName());
