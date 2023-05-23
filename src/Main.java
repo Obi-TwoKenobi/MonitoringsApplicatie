@@ -7,9 +7,9 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         // test code voor backtracking
-        OptimalInfrastructureDesignGenerator dg = new OptimalInfrastructureDesignGenerator();
+        /*OptimalInfrastructureDesignGenerator dg = new OptimalInfrastructureDesignGenerator();
         System.out.println(dg.generateOptimizedDesign(0.9999));
-        System.out.println(dg);
+        System.out.println(dg);*/
 
         try {
             UIManager.setLookAndFeel(

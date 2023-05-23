@@ -44,21 +44,21 @@ public class OptimalInfrastructureDesignGenerator {
     private boolean isValidDesign(InfrastructureDesign design, double availabilityPercentage) {
 		//check of de prijs en beschikbaarheid kloppen
 		boolean desginHasCorrectAvailabilityPercentage = design.calculateAvailabilityPercentage() > availabilityPercentage;
-        boolean designIsCheaperThenCheapestGeneratedDesign = design.calculateTotalPrice() <= this.currentLowestPrice;
-		// boolean designHasHigherAvailabilityThanOriginalDesign = design.calculateAvailabilityPercentage() > design.calculateAvailabilityPercentage();
+        //boolean designIsCheaperThenCheapestGeneratedDesign = design.calculateTotalPrice() <= this.currentLowestPrice;
+		//boolean designHasHigherAvailabilityThanOriginalDesign = design.calculateAvailabilityPercentage() > design.calculateAvailabilityPercentage();
 
 		//checken of er genoeg componente zijn
-		// boolean desginHasLessThenMaxFirewalls = design.getFirewallLayer().getInfrastructureComponents().size() <= MAX_FIREWALLS;
-		// boolean designHasLessThenMaxWebservers = design.getWebserverLayer().getInfrastructureComponents().size() <= MAX_WEBSERVERS;
-		// boolean designHasLessThenMaxDBServers = design.getDatabaseLayer().getInfrastructureComponents().size() <= MAX_DATABASESERVERS;
-		boolean desginHasMoreThenMinFirewalls = design.getFirewallLayer().getInfrastructureComponents().size() >= MIN_FIREWALLS;
+		boolean desginHasLessThenMaxFirewalls = design.getFirewallLayer().getInfrastructureComponents().size() <= MAX_FIREWALLS;
+		boolean designHasLessThenMaxWebservers = design.getWebserverLayer().getInfrastructureComponents().size() <= MAX_WEBSERVERS;
+		boolean designHasLessThenMaxDBServers = design.getDatabaseLayer().getInfrastructureComponents().size() <= MAX_DATABASESERVERS;
+		/*boolean desginHasMoreThenMinFirewalls = design.getFirewallLayer().getInfrastructureComponents().size() >= MIN_FIREWALLS;
 		boolean designHasMoreThenMinWebservers = design.getWebserverLayer().getInfrastructureComponents().size() >= MIN_WEBSERVERS;
-		boolean designHasMoreThenMinDBServers = design.getDatabaseLayer().getInfrastructureComponents().size() >= MIN_DATABASESERVERS;
-		boolean designHasMoreThenMinComponents = desginHasMoreThenMinFirewalls && designHasMoreThenMinWebservers && designHasMoreThenMinDBServers;
-
+		boolean designHasMoreThenMinDBServers = design.getDatabaseLayer().getInfrastructureComponents().size() >= MIN_DATABASESERVERS;*/
+		//boolean designHasMoreThenMinComponents = desginHasMoreThenMinFirewalls && designHasMoreThenMinWebservers && designHasMoreThenMinDBServers;
+		boolean designLessThanMax = desginHasLessThenMaxFirewalls && designHasLessThenMaxWebservers && designHasLessThenMaxDBServers;
 		//check of de combinatie van beide klopt
-		boolean designHasRightAvailabilityAndPrice = desginHasCorrectAvailabilityPercentage && designIsCheaperThenCheapestGeneratedDesign;
-		boolean isAcceptableDesign = designHasMoreThenMinComponents && designHasRightAvailabilityAndPrice;
+		boolean designHasRightAvailabilityAndPrice = desginHasCorrectAvailabilityPercentage;
+		boolean isAcceptableDesign = designLessThanMax && designHasRightAvailabilityAndPrice;
 
 		//wanneer het kan returned het true anders false
 		return isAcceptableDesign;
@@ -77,13 +77,12 @@ public class OptimalInfrastructureDesignGenerator {
 			} catch (CloneNotSupportedException e) {
 				System.out.println("Could not clone object");
 			}
-			return;
 		}
 
 		// Explore all combinations of webservers and databaseservers
-		for (int webIndex = index; webIndex < this.AVAILABLE_WEBSERVERS.size(); webIndex++) {
+		for (int webIndex = index; webIndex < this.MAX_WEBSERVERS; webIndex++) {
 			design.getWebserverLayer().getInfrastructureComponents().add(AVAILABLE_WEBSERVERS.get(webIndex));
-			for (int dbIndex = index; dbIndex < this.AVAILABLE_DBSERVERS.size(); dbIndex++) {
+			for (int dbIndex = index; dbIndex < this.MAX_DATABASESERVERS; dbIndex++) {
 				design.getDatabaseLayer().getInfrastructureComponents().add(AVAILABLE_DBSERVERS.get(dbIndex));
 				this.backtrack(index + 1, design, targetPercentage);
 				design.getDatabaseLayer().getInfrastructureComponents().remove(design.getDatabaseLayer().getInfrastructureComponents().size() - 1);
@@ -94,8 +93,8 @@ public class OptimalInfrastructureDesignGenerator {
 	public InfrastructureDesign generateOptimizedDesign(double targetPercentage) throws Exception {
 		InfrastructureDesign design = new InfrastructureDesign();
         design.getFirewallLayer().getInfrastructureComponents().add(AVAILABLE_FIREWALLS.get(0));
-		design.getDatabaseLayer().getInfrastructureComponents().add(AVAILABLE_DBSERVERS.get(0));
-		design.getWebserverLayer().getInfrastructureComponents().add(AVAILABLE_WEBSERVERS.get(0));
+		//design.getDatabaseLayer().getInfrastructureComponents().add(AVAILABLE_DBSERVERS.get(0));
+		//design.getWebserverLayer().getInfrastructureComponents().add(AVAILABLE_WEBSERVERS.get(0));
 		backtrack(0, design, targetPercentage);
 		return this.generatedInfrastructureDesign;
 	}
