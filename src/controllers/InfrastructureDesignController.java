@@ -37,8 +37,7 @@ public class InfrastructureDesignController {
         this.infrastructureDesignGUI.getStatisticsContainer().updateView();
         this.infrastructureDesignGUI.revalidate();
     }
-    
-    
+
     public void getOptimalDesign(double targetPercentage){
         if (targetPercentage > 1){
             targetPercentage = targetPercentage/100;
@@ -47,7 +46,7 @@ public class InfrastructureDesignController {
         try{
             this.setCurrentlyActiveDesign(dg.generateOptimizedDesign(targetPercentage));
         }catch(NoSuitableInfrastructureDesignException nsie){
-            System.out.println(nsie.getMessage());
+            JOptionPane.showMessageDialog(infrastructureDesignGUI, "Met dit percentage kunnen op met moment geen ontwerpen worden gemaakt", "Fout code: 69", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -104,6 +103,6 @@ public class InfrastructureDesignController {
         this.currentlyActiveDesign = design;
         this.infrastructureDesignGUI.getDesignContainer().updateView();
         this.infrastructureDesignGUI.getStatisticsContainer().updateView();
-
+        this.infrastructureDesignGUI.repaint();
     }
 }

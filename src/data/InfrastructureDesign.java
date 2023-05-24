@@ -10,7 +10,6 @@ public class InfrastructureDesign implements Serializable{
     private FirewallLayer firewallLayer;
     private WebserverLayer webserverLayer;
     private DatabaseLayer databaseLayer;
-
     private String savedFilePath;
 
 
@@ -19,12 +18,6 @@ public class InfrastructureDesign implements Serializable{
         this.webserverLayer = new WebserverLayer();
         this.databaseLayer = new DatabaseLayer();
     }
-
-   /* public InfrastructureDesign(FirewallLayer firewallLayer, WebserverLayer webserverLayer, DatabaseLayer databaseLayer){
-        this.firewallLayer = firewallLayer;
-        this.webserverLayer = webserverLayer;
-        this.databaseLayer = databaseLayer;
-    }*/
 
     public double calculateAvailabilityPercentage(){
         double percentage = this.firewallLayer.calculateAvailabilityPercentage() * this.webserverLayer.calculateAvailabilityPercentage() * this.databaseLayer.calculateAvailabilityPercentage();

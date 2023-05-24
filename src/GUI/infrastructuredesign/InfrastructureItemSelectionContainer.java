@@ -2,13 +2,10 @@ package GUI.infrastructuredesign;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import javax.swing.JPanel;
 
-import GUI.Styling;
 import controllers.InfrastructureDesignController;
 import data.DatabaseserverComponent;
 import data.FirewallComponent;

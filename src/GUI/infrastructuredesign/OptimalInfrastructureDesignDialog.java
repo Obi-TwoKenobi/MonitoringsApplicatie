@@ -1,9 +1,6 @@
 package GUI.infrastructuredesign;
 
 import controllers.InfrastructureDesignController;
-import data.OptimalInfrastructureDesignGenerator;
-import exceptions.Infrastructuredesign.NoSuitableInfrastructureDesignException;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -38,7 +35,6 @@ public class OptimalInfrastructureDesignDialog extends JDialog implements Action
         add(closeButton);
 
         this.setVisible(true);
-
     }
 
     @Override
@@ -51,8 +47,6 @@ public class OptimalInfrastructureDesignDialog extends JDialog implements Action
                 this.controller.getOptimalDesign(beschikbaarheidpercentage);
             } catch (NumberFormatException nfe){
                 JOptionPane.showMessageDialog(this, "Vul een geldige waarde in!", "Fout", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
             }
         }
         if (e.getSource().equals(closeButton)){

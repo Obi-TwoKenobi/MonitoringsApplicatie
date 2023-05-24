@@ -10,8 +10,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import GUI.Styling;
 import controllers.InfrastructureDesignController;
-import data.OptimalInfrastructureDesignGenerator;
-import exceptions.Infrastructuredesign.NoSuitableInfrastructureDesignException;
 
 public class InfrastructureDesignGUI extends JDialog implements ActionListener {
 

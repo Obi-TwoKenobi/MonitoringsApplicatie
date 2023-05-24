@@ -6,9 +6,9 @@ public class DB {
 
     public static Connection databaseConnection;
 
-    private static final String dbUrl = "jdbc:mariadb://localhost:3306/monitoringstest";
-    private static final String user = "root";
-    private static final String password = "";
+    private static final String dbUrl = "jdbc:mariadb://192.168.3.2:3306/monitoring";
+    private static final String user = "HAProxy";
+    private static final String password = "ICTM2O2!#gangsters";
 
     private DB(){}
 

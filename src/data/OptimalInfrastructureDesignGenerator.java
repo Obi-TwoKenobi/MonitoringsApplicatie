@@ -2,7 +2,6 @@ package data;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import exceptions.Infrastructuredesign.NoSuitableInfrastructureDesignException;
 
 public class OptimalInfrastructureDesignGenerator {
@@ -36,23 +35,17 @@ public class OptimalInfrastructureDesignGenerator {
 
 
     private boolean isValidDesign(InfrastructureDesign design, double availabilityPercentage) {
-        //TODO finetunen van isValidDesign, werkt volgens mij(Joey) niet helemaal als verwacht.
-		boolean desginHasCorrectAvailabilityPercentage = 
-        design.calculateAvailabilityPercentage() >= availabilityPercentage;
-		
+		boolean desginHasCorrectAvailabilityPercentage = design.calculateAvailabilityPercentage() >= availabilityPercentage;
         boolean designIsCheaperThenCheapestGeneratedDesign = design.calculateTotalPrice() <= this.currentLowestPrice;
 
 		boolean desginHasMoreThenMinFirewalls = design.getFirewallLayer().getInfrastructureComponents().size() >= MIN_FIREWALLS;
 		boolean designHasMoreThenMinWebservers = design.getWebserverLayer().getInfrastructureComponents().size() >= MIN_WEBSERVERS;
 		boolean designHasMoreThenMinDBServers = design.getDatabaseLayer().getInfrastructureComponents().size() >= MIN_DATABASESERVERS;
-		
-		boolean designHasMoreThenMinComponents = desginHasMoreThenMinFirewalls &&
-        designHasMoreThenMinWebservers &&
-        designHasMoreThenMinDBServers;
+		boolean designHasMoreThenMinComponents = desginHasMoreThenMinFirewalls && designHasMoreThenMinWebservers && designHasMoreThenMinDBServers;
 
 		boolean designHasRightAvailabilityAndPrice = desginHasCorrectAvailabilityPercentage &&designIsCheaperThenCheapestGeneratedDesign;
-		
 		boolean isAcceptableDesign = designHasMoreThenMinComponents && designHasRightAvailabilityAndPrice;
+
 		return isAcceptableDesign;
 	}
 	

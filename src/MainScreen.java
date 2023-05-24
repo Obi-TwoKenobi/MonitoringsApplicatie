@@ -4,10 +4,6 @@ import javax.swing.*;
 import GUI.Styling;
 import GUI.infrastructuredesign.InfrastructureDesignGUI;
 import GUI.monitoring.MonitoringsGUI;
-import data.DatabaseserverComponent;
-import data.FirewallComponent;
-import data.InfrastructureDesignComponent;
-import data.WebserverComponent;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -65,7 +61,6 @@ public class MainScreen extends JPanel implements ActionListener {
         ontwerpLabel.setForeground(Color.white);
 
         this.monitoringButton = new JButton(monitoringIcon);
-        //monitoringsGUI = new MonitoringsGUI(hoofdscherm);
         monitoringButton.addActionListener(this);
         Dimension monitoringButtonPreferredSize = monitoringButton.getPreferredSize();
         monitoringButton.setBounds(80, 200, monitoringButtonPreferredSize.width, monitoringButtonPreferredSize.height);

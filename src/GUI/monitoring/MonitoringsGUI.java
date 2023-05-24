@@ -1,8 +1,6 @@
 package GUI.monitoring;
 
 import GUI.Styling;
-import controllers.InfrastructureDesignController;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -32,7 +30,9 @@ public class MonitoringsGUI extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // update the table data
-                model.tableModel();
+                if (model.getReachable() == true){
+                    model.tableModel();
+                }
             }
         });
         timer.start();
