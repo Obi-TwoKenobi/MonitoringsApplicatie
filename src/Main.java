@@ -1,8 +1,4 @@
 import javax.swing.*;
-
-import data.InfrastructureDesign;
-import data.OptimalInfrastructureDesignGenerator;
-
 public class Main {
     public static void main(String[] args) {
 

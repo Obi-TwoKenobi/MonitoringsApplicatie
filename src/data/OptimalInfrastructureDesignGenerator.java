@@ -94,4 +94,10 @@ public class OptimalInfrastructureDesignGenerator {
 		if(this.generatedInfrastructureDesign == null) throw new NoSuitableInfrastructureDesignException("Kon geen infrastructuurontwerp berekenen met een bschikbaarheid van: " + (targetPercentage * 100) + "%.");
 		return this.generatedInfrastructureDesign;
 	}
+	@Override
+	public String toString() {
+		return "OptimalInfrastructureDesignGenerator{" +
+				"generatedInfrastructureDesign=" + generatedInfrastructureDesign +
+				'}';
+	}
 }

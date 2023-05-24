@@ -28,7 +28,6 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
     private JMenuItem fileMenuLoadDesignItem;
     private JMenuItem fileMenuSaveDesignItem;
     private JMenuItem fileMenuSaveDesignAsItem;
-    private JMenuItem fileMenuCloseDesignItem;
     private JMenuItem generateOptimalDesignItem;
 
     private InfrastructureItemSelectionContainer itemSelectionContainer;
@@ -37,17 +36,9 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
     private InfrastructureDesignController controller;
     private OptimalInfrastructureDesignDialog optimalInfrastructureDesignDialog;
 
-
     public InfrastructureDesignGUI(JFrame parent) {
         super(parent, false);
         this.controller = new InfrastructureDesignController(this);
-        
-        OptimalInfrastructureDesignGenerator dg = new OptimalInfrastructureDesignGenerator();
-        try{
-            this.controller.setCurrentlyActiveDesign(dg.generateOptimizedDesign(0.9999));
-        }catch(NoSuitableInfrastructureDesignException nsie){
-            System.out.println(nsie.getMessage());
-        }
 
         this.fileMenu = new JMenu("Bestand");
         this.generateOptimalDesignMenu = new JMenu("ontwerp genereren");
@@ -62,7 +53,6 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
         fileMenuSaveDesignItem.addActionListener(this);
         this.fileMenuSaveDesignAsItem = new JMenuItem("bestand opslaan als");
         fileMenuSaveDesignAsItem.addActionListener(this);
-        this.fileMenuCloseDesignItem = new JMenuItem("Sluiten");
 
         this.itemSelectionContainer = new InfrastructureItemSelectionContainer(this.controller);
         JScrollPane itemSelectionPaneScrollable = new JScrollPane(itemSelectionContainer);
@@ -80,7 +70,6 @@ public class InfrastructureDesignGUI extends JDialog implements ActionListener {
         this.fileMenu.add(fileMenuLoadDesignItem);
         this.fileMenu.add(fileMenuSaveDesignItem);
         this.fileMenu.add(fileMenuSaveDesignAsItem);
-        this.fileMenu.add(fileMenuCloseDesignItem);
 
         this.topMenubar.add(generateOptimalDesignMenu);
         this.generateOptimalDesignMenu.add(generateOptimalDesignItem);

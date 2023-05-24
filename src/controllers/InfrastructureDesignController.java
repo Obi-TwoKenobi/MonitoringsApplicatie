@@ -1,35 +1,18 @@
 package controllers;
 
-import javax.management.RuntimeErrorException;
 import javax.swing.*;
-
-import GUI.infrastructuredesign.DesignComponent;
-import GUI.infrastructuredesign.InfrastructureDesignContainer;
 import GUI.infrastructuredesign.InfrastructureDesignGUI;
-import data.ComponentLayer;
-import data.DatabaseserverComponent;
-import data.FirewallComponent;
-import data.InfrastructureDesign;
-import data.InfrastructureDesignComponent;
-import data.WebserverComponent;
-
+import data.*;
+import exceptions.Infrastructuredesign.NoSuitableInfrastructureDesignException;
 import java.io.*;
-import java.net.InetAddress;
-import java.net.Socket;
 
 public class InfrastructureDesignController {
     private InfrastructureDesignGUI infrastructureDesignGUI;
     private InfrastructureDesign currentlyActiveDesign;
-    private InfrastructureDesignContainer infrastructureDesignContainer;
 
     public InfrastructureDesignController(InfrastructureDesignGUI infrastructureDesignGUI){
         this.infrastructureDesignGUI = infrastructureDesignGUI;
         this.currentlyActiveDesign = new InfrastructureDesign();
-    }
-    
-    public InfrastructureDesignController(InfrastructureDesignGUI infrastructureDesignGUI, InfrastructureDesign currentlyActiveDesign){
-        this.infrastructureDesignGUI = infrastructureDesignGUI;
-        this.currentlyActiveDesign = currentlyActiveDesign;
     }
 
     public void saveInfrastructureDesign(String filePath) throws FileNotFoundException {
@@ -56,8 +39,16 @@ public class InfrastructureDesignController {
     }
     
     
-    public boolean getOptimalDesign(double targetPercentage) throws Exception{
-        throw new Exception("nog niet geimplementeert");
+    public void getOptimalDesign(double targetPercentage){
+        if (targetPercentage > 1){
+            targetPercentage = targetPercentage/100;
+        }
+        OptimalInfrastructureDesignGenerator dg = new OptimalInfrastructureDesignGenerator();
+        try{
+            this.setCurrentlyActiveDesign(dg.generateOptimizedDesign(targetPercentage));
+        }catch(NoSuitableInfrastructureDesignException nsie){
+            System.out.println(nsie.getMessage());
+        }
     }
 
     public boolean addComponentToLayer(InfrastructureDesignComponent component){
@@ -111,11 +102,8 @@ public class InfrastructureDesignController {
 
     public void setCurrentlyActiveDesign(InfrastructureDesign design){
         this.currentlyActiveDesign = design;
-    }
-    public void placeholderMethodBacktracking(double beschikbaarheidspercentage){
-        System.out.println(beschikbaarheidspercentage);
-    }
-    public void placeholderMethodIsValid(){
+        this.infrastructureDesignGUI.getDesignContainer().updateView();
+        this.infrastructureDesignGUI.getStatisticsContainer().updateView();
 
     }
 }

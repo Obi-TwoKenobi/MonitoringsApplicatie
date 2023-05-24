@@ -6,7 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-public class InfrastructureDesign implements Serializable, Cloneable {
+public class InfrastructureDesign implements Serializable{
     private FirewallLayer firewallLayer;
     private WebserverLayer webserverLayer;
     private DatabaseLayer databaseLayer;
@@ -20,11 +20,11 @@ public class InfrastructureDesign implements Serializable, Cloneable {
         this.databaseLayer = new DatabaseLayer();
     }
 
-    public InfrastructureDesign(FirewallLayer firewallLayer, WebserverLayer webserverLayer, DatabaseLayer databaseLayer){
+   /* public InfrastructureDesign(FirewallLayer firewallLayer, WebserverLayer webserverLayer, DatabaseLayer databaseLayer){
         this.firewallLayer = firewallLayer;
         this.webserverLayer = webserverLayer;
         this.databaseLayer = databaseLayer;
-    }
+    }*/
 
     public double calculateAvailabilityPercentage(){
         double percentage = this.firewallLayer.calculateAvailabilityPercentage() * this.webserverLayer.calculateAvailabilityPercentage() * this.databaseLayer.calculateAvailabilityPercentage();
@@ -89,17 +89,5 @@ public class InfrastructureDesign implements Serializable, Cloneable {
         ObjectInputStream in = new ObjectInputStream(bis);
         InfrastructureDesign copiedInfrastructureDesign = (InfrastructureDesign) in.readObject();
         return copiedInfrastructureDesign;
-    }
-
-    @Override
-	protected Object clone() throws CloneNotSupportedException {
-        /*
-         * Zou gebruikt moeten worden voor het clonene van een infrastructuur ontwerp maar deze werkt nog niet, daarom de boevenstaande deepCopy methode die met behulp van Serialization een deep copy maakt
-         */
-        InfrastructureDesign clonedDesign = (InfrastructureDesign) new InfrastructureDesign();
-        clonedDesign.setFirewallLayer((FirewallLayer)clonedDesign.getFirewallLayer().clone());
-        clonedDesign.setWebserverLayer((WebserverLayer)clonedDesign.getWebserverLayer().clone());
-        clonedDesign.setDatabaseLayer((DatabaseLayer)clonedDesign.getDatabaseLayer().clone());
-        return clonedDesign;
     }
 }
