@@ -36,11 +36,11 @@ public class DatabaseTableModel extends AbstractTableModel{
                         while (resultSet.next()) {
                             Object[] row = new Object[columnNames.length];
                             row[0] = resultSet.getString("hostnaam");
-                            row[1] = resultSet.getInt("cpu_load");
-                            row[2] = resultSet.getInt("disk_total");
-                            row[3] = resultSet.getInt("disk_used");
-                            row[4] = resultSet.getInt("disk_free");
-                            row[5] = resultSet.getInt("uptime");
+                            row[1] = resultSet.getDouble("cpu_load");
+                            row[2] = resultSet.getDouble("disk_total");
+                            row[3] = resultSet.getDouble("disk_used");
+                            row[4] = resultSet.getDouble("disk_free");
+                            row[5] = resultSet.getDouble("uptime");
                             String server = resultSet.getString("server");
                             if (server.equals("webserver")){
                                 boolean isAvailable = checkWebserverAvailability(ip, 80);
