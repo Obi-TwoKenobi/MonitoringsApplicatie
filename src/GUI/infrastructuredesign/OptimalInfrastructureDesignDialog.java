@@ -45,6 +45,7 @@ public class OptimalInfrastructureDesignDialog extends JDialog implements Action
                 availability = availability.replace(",", ".");
                 double beschikbaarheidpercentage = Double.parseDouble(availability);
                 this.controller.getOptimalDesign(beschikbaarheidpercentage);
+                this.dispose();
             } catch (NumberFormatException nfe){
                 JOptionPane.showMessageDialog(this, "Vul een geldige waarde in!", "Fout", JOptionPane.ERROR_MESSAGE);
             }

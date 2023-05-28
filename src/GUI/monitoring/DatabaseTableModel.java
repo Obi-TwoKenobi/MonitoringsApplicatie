@@ -37,10 +37,10 @@ public class DatabaseTableModel extends AbstractTableModel{
                             Object[] row = new Object[columnNames.length];
                             row[0] = resultSet.getString("hostnaam");
                             row[1] = resultSet.getDouble("cpu_load");
-                            row[2] = resultSet.getDouble("disk_total");
-                            row[3] = resultSet.getDouble("disk_used");
-                            row[4] = resultSet.getDouble("disk_free");
-                            row[5] = resultSet.getDouble("uptime");
+                            row[2] = (resultSet.getDouble("disk_total") / Math.pow(1024, 3));
+                            row[3] = (resultSet.getDouble("disk_used") / Math.pow(1024, 3));
+                            row[4] = (resultSet.getDouble("disk_free") / Math.pow(1024, 3));
+                            row[5] = (resultSet.getDouble("uptime") / 3600);
                             String server = resultSet.getString("server");
                             if (server.equals("webserver")){
                                 boolean isAvailable = checkWebserverAvailability(ip, 80);
@@ -66,28 +66,6 @@ public class DatabaseTableModel extends AbstractTableModel{
                     JOptionPane.showMessageDialog(jDialog, "Databaseserver niet bereikbaar!", "Fout", JOptionPane.ERROR_MESSAGE);
                     reachable = false;
                 }
-
-                /*List<Object[]> rows = new ArrayList<>();
-                while (resultSet.next()) {
-                    Object[] row = new Object[columnNames.length];
-                    row[0] = resultSet.getString("hostnaam");
-                    row[1] = resultSet.getInt("cpu_load");
-                    row[2] = resultSet.getInt("disk_total");
-                    row[3] = resultSet.getInt("disk_used");
-                    row[4] = resultSet.getInt("disk_free");
-                    row[5] = resultSet.getInt("uptime");
-                    String server = resultSet.getString("server");
-                    if (server.equals("webserver")){
-                        boolean isAvailable = checkWebserverAvailability(ip, 80);
-                        row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
-                    } else if (server.equals("database")) {
-                        boolean isAvailable = checkDatabaseserverAvailability(ip, 3306);
-                        row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
-                    }
-                    rows.add(row);
-                }
-                data = rows.toArray(new Object[0][]);
-                fireTableDataChanged();*/
             } catch (Exception e) {
                 e.printStackTrace();
                 reachable = false;

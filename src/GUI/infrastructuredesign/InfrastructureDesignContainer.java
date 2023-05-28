@@ -23,7 +23,7 @@ public class InfrastructureDesignContainer extends JPanel{
     private JPanel webserverLayer;
     private JPanel databaseLayer;
 
-    private final int LAYER_WDITH = 1280;
+    private final int LAYER_WIDTH = 1280;
     private final int LAYER_HEIGHT = 140;
 
     private final Font LAYER_FONT = new Font("arial", Font.PLAIN, 16);
@@ -52,19 +52,19 @@ public class InfrastructureDesignContainer extends JPanel{
         this.databaseLayerLabel.setFont(LAYER_FONT);
 
         this.firewallLayer = new JPanel();
-        this.firewallLayer.setPreferredSize(new Dimension(LAYER_WDITH, LAYER_HEIGHT));
+        this.firewallLayer.setPreferredSize(new Dimension(LAYER_WIDTH, LAYER_HEIGHT));
         this.firewallLayer.setLayout(new BoxLayout(firewallLayer, BoxLayout.LINE_AXIS));
         this.firewallLayer.setAlignmentX(LEFT_ALIGNMENT);
         this.firewallLayer.setBackground(Styling.COLOR_LIGHT_BLUE);
 
         this.webserverLayer = new JPanel();
-        this.webserverLayer.setPreferredSize(new Dimension(LAYER_WDITH, LAYER_HEIGHT));
+        this.webserverLayer.setPreferredSize(new Dimension(LAYER_WIDTH, LAYER_HEIGHT));
         this.webserverLayer.setLayout(new BoxLayout(webserverLayer, BoxLayout.LINE_AXIS));
         this.webserverLayer.setAlignmentX(LEFT_ALIGNMENT);
         this.webserverLayer.setBackground(Styling.COLOR_LIGHT_BLUE);
 
         this.databaseLayer = new JPanel();
-        this.databaseLayer.setPreferredSize(new Dimension(LAYER_WDITH, LAYER_HEIGHT));
+        this.databaseLayer.setPreferredSize(new Dimension(LAYER_WIDTH, LAYER_HEIGHT));
         this.databaseLayer.setLayout(new BoxLayout(databaseLayer, BoxLayout.LINE_AXIS));
         this.databaseLayer.setAlignmentX(LEFT_ALIGNMENT);
         this.databaseLayer.setBackground(Styling.COLOR_LIGHT_BLUE);

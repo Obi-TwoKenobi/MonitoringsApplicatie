@@ -18,8 +18,8 @@ public class MainScreen extends JPanel implements ActionListener {
     private JButton monitoringButton, ontwerpButton;
     private JFrame hoofdscherm;
     private JLabel monitoringLabel, ontwerpLabel;
-    private final int IMAGE_width = 250;
-    private final int IMAGE_height = 200;
+    private final int IMAGE_WIDTH = 250;
+    private final int IMAGE_HEIGHT = 200;
     private InfrastructureDesignGUI infrastructureDesignGUI;
     private MonitoringsGUI monitoringsGUI;
     private ImageIcon monitoringIcon, ontwerpIcon;
@@ -92,7 +92,7 @@ public class MainScreen extends JPanel implements ActionListener {
 
         try{
             BufferedImage img = ImageIO.read(new File(filePath));
-            Image scaledImage = img.getScaledInstance(IMAGE_width, IMAGE_height, Image.SCALE_SMOOTH);
+            Image scaledImage = img.getScaledInstance(IMAGE_WIDTH, IMAGE_HEIGHT, Image.SCALE_SMOOTH);
             return new ImageIcon(scaledImage);
         }catch(IOException ioe){
             ioe.printStackTrace();
