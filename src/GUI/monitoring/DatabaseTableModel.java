@@ -13,7 +13,7 @@ public class DatabaseTableModel extends AbstractTableModel{
     private Connection connection;
     private Statement statement;
     private ResultSet resultSet;
-    private String ip = "192.168.3.2";
+    private String ip;
     int timeoutSeconds = 3;
     boolean reachable = true;
     private Object[][] data = {};
@@ -42,6 +42,7 @@ public class DatabaseTableModel extends AbstractTableModel{
                             row[4] = (resultSet.getDouble("disk_free") / Math.pow(1024, 3));
                             row[5] = (resultSet.getDouble("uptime") / 3600);
                             String server = resultSet.getString("server");
+                            ip = resultSet.getString("ipadres");
                             if (server.equals("webserver")){
                                 boolean isAvailable = checkWebserverAvailability(ip, 80);
                                 row[6] = isAvailable ? "Yes" : "No";  // Set "beschikbaar" column value
