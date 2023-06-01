@@ -38,4 +38,10 @@ public class MonitoringsGUI extends JDialog {
         timer.start();
         pack();
     }
+
+    @Override
+    public void dispose() {
+        timer.stop();
+        super.dispose();
+    }
 }
