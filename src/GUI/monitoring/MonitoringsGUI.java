@@ -26,16 +26,17 @@ public class MonitoringsGUI extends JDialog {
         this.table.setBackground(Styling.COLOR_LIGHT_BLUE);
         this.table.setForeground(Color.WHITE);
         // create a timer to refresh the data every 3 seconds
-        timer = new Timer(3000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        if (model.checkFirewallAvailability("192.168.1.1", 80)){
+            timer = new Timer(3000, e -> {
                 // update the table data
-                if (model.getReachable() == true){
+                if (model.getReachable()){
                     model.tableModel();
                 }
-            }
-        });
-        timer.start();
-        pack();
+            });
+            timer.start();
+            pack();
+        }else {
+            JOptionPane.showMessageDialog(this, "Firewall niet bereikbaar!", "Fout", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
